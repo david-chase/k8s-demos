@@ -18,6 +18,7 @@ $sParams2 = $sGcloud + " container clusters create " + $oConfig.clustername + `
     " --min-nodes=" + $oConfig.minsize + `
     " --max-nodes=" + $oConfig.maxsize + `
     " --labels=" + $sTags + `
+    " --machine-type=" + $oConfig.instancetype + `
     " --cluster-version=" + $oConfig.version
 if( $oConfig.spot.ToLower() = "yes" ) { $sParams2 += " --spot" }
 
