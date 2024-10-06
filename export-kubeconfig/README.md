@@ -13,5 +13,5 @@ This simple scenario explains how to export your cluster config to the default k
 ## GKE
                 gcloud container clusters get-credentials <CLUSTER_NAME>
 
-## Minikube
+## minikube
 Minikube regenerates the kubeconfig file every time you execute "minikube start".
