@@ -1,0 +1,37 @@
+# Create a namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: testing
+  labels:
+    name: testing
+---
+# Create a Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-apache
+  namespace: testing
+spec:
+  # Create lots of replicas so we can observe the PDB in action
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: php-apache
+        image: registry.k8s.io/hpa-example
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 200m
+            memory: 200Mi
+          requests:
+            cpu: 200m
+            memory: 200Mi
