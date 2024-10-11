@@ -100,4 +100,4 @@ With cluster autoscaler deployed, nodes will automatically be added to your node
 
 This will scale your cluster up (or in some situations down) to three nodes.  To verify the scaling was successful, run:
 
-                kubectl get no
+    kubectl get no
