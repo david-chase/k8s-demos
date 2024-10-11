@@ -26,6 +26,8 @@ $oStopWatch.Start()
 Start-Process "eksctl" -ArgumentList $sParams -Wait -NoNewWindow
 
 # Enable VPC Prefix to significantly increase MaxPodsPerNode 
+Write-Host "`nEnabling VPC prefix to allow higher MaxPodsPerNode" -ForegroundColor Cyan
+Write-Host kubectl set env daemonset aws-node -n kube-system ENABLE_PREFIX_DELEGATION=true`n -ForegroundColor Green
 kubectl set env daemonset aws-node -n kube-system ENABLE_PREFIX_DELEGATION=true
 
 Write-Host
