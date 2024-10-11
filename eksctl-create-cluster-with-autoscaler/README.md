@@ -91,7 +91,7 @@ You can leave your cluster in this state if you wish to use it again in the futu
 
 13. To deprovision the control plane and delete the cluster run:
 
-                .\Destroy-Cluster.ps1
+    .\Destroy-Cluster.ps1
 
 ## Scaling the Nodegroup
 With cluster autoscaler deployed, nodes will automatically be added to your nodegroup if you run out of capacity.  However in some situations you may like to directly change the number of nodes in your cluster.  For example, to ensure you have at least 3 nodes in your cluster, run the following scripts:
