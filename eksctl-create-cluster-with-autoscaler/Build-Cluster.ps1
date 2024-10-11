@@ -13,7 +13,7 @@ $sParams1 = "create cluster --name=" + $oConfig.clustername + `
     " --tags " + $sTags + `
     " --version " + $oConfig.version + `
     " --write-kubeconfig --set-kubeconfig-context --without-nodegroup --with-oidc --asg-access"
-$sParams2 = " set env daemonset aws-node -n kube-system ENABLE_PREFIX_DELEGATION=true"
+$sParams2 = "set env daemonset aws-node -n kube-system ENABLE_PREFIX_DELEGATION=true"
 
 # Show the user the command we're about to execute and let them choose to proceed
 Write-Host "eksctl" $sParams1`n -ForegroundColor Green
