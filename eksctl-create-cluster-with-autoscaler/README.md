@@ -85,7 +85,7 @@ It should take 10-15 minutes before your cluster scales back down to a single no
 
 12. When done, deprovision your managed node group by running:
 
-    .\Destroy-Nodegroup.ps1
+     .\Destroy-Nodegroup.ps1
 
 You can leave your cluster in this state if you wish to use it again in the future.  Simply run "Add-Nodegroup.ps1" again to provision more worker nodes.  If you no longer need the test cluster you can delete it by proceeding to the next step.
 
