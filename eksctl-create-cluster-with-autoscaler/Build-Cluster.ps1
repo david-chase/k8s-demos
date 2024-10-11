@@ -7,15 +7,17 @@ $oConfig = Get-Content -Path 'config.ini' | ConvertFrom-StringData
 
 $sTags = '"Owner=' + $oConfig.owner + ",Purpose=" + $oConfig.purpose + ",CreateDate=" + ( Get-Date -format "yyyy.MM.dd" ) + '"'
 
-$sParams = "create cluster --name=" + $oConfig.clustername + `
+$sParams1 = "create cluster --name=" + $oConfig.clustername + `
     " --region=" + $oConfig.region + `
     " --zones=" + $oConfig.region + "a," + $oConfig.region + "b"  + `
     " --tags " + $sTags + `
     " --version " + $oConfig.version + `
     " --write-kubeconfig --set-kubeconfig-context --without-nodegroup --with-oidc --asg-access"
+$Params2 = "set env daemonset aws-node -n kube-system ENABLE_PREFIX_DELEGATION=true"
 
 # Show the user the command we're about to execute and let them choose to proceed
-Write-Host "eksctl" $sParams`n -ForegroundColor Green
+Write-Host "eksctl" $sParams1`n -ForegroundColor Green
+Write-Host "kubectl" $sParams2`n -ForegroundColor Green
 $sResponse = Read-Host -Prompt "Proceed? [Y/n]"
 if( $sResponse.ToLower() -eq "n" ) { exit }
 
@@ -23,12 +25,10 @@ if( $sResponse.ToLower() -eq "n" ) { exit }
 $oStopWatch = New-Object -TypeName System.Diagnostics.Stopwatch
 $oStopWatch.Start()
 
-Start-Process "eksctl" -ArgumentList $sParams -Wait -NoNewWindow
+Start-Process "eksctl" -ArgumentList $sParams1 -Wait -NoNewWindow
 
 # Enable VPC Prefix to significantly increase MaxPodsPerNode 
-Write-Host "`nEnabling VPC prefix to allow higher MaxPodsPerNode" -ForegroundColor Cyan
-Write-Host kubectl set env daemonset aws-node -n kube-system ENABLE_PREFIX_DELEGATION=true`n -ForegroundColor Green
-kubectl set env daemonset aws-node -n kube-system ENABLE_PREFIX_DELEGATION=true
+Start-Process "eksctl" -ArgumentList $sParams2 -Wait -NoNewWindow
 
 Write-Host
 
