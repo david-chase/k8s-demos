@@ -44,10 +44,10 @@ Now configure the AWS CLI:
 
 Enter your information when prompted:
 
-    >AWS Access Key ID [None]: <Your AWS Access Key ID>
-    >AWS Secret Access Key [None]: <Your AWS Secret Access Key>
-    >Default region name [None]: us-east-2
-    >Default output format [None]: json
+    AWS Access Key ID [None]: <Your AWS Access Key ID>
+    AWS Secret Access Key [None]: <Your AWS Secret Access Key>
+    Default region name [None]: us-east-2
+    Default output format [None]: json
 
 You have now installed and configured the AWS CLI and can stop the scenario here if you only have one set of AWS credentials.
 
