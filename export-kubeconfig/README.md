@@ -5,13 +5,13 @@ This simple scenario explains how to export your cluster config to the default k
 
 
 ## AKS
-        az aks get-credentials --resource-group <RESOURCE_GROUP> --name <CLUSTER_NAME>
+    az aks get-credentials --resource-group <RESOURCE_GROUP> --name <CLUSTER_NAME>
 
 ## EKS
-        aws eks update-kubeconfig --region <REGION> --name <CLUSTER_NAME>
+    aws eks update-kubeconfig --region <REGION> --name <CLUSTER_NAME>
 
 ## GKE
-        gcloud container clusters get-credentials <CLUSTER_NAME>
+    gcloud container clusters get-credentials <CLUSTER_NAME>
 
 ## minikube
 Minikube regenerates the kubeconfig file every time you execute "minikube start".
