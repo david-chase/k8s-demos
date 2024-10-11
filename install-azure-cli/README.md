@@ -19,7 +19,6 @@ https://aka.ms/installazurecliwindowsx64
 ### Login to Azure
 Now login to the Azure CLI:
 
-                az login
+    az login
 
 Proceed to login using your Azure credentials, and select a tenant and subscription when prompted.  The Azure CLI tool is now installed and configured.
-
