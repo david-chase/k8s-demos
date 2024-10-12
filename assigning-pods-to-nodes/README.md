@@ -25,7 +25,7 @@ This is generally not recommended but is a quick and simple way to assign pods t
 
         kubectl get no
 
-2. Edit php-apache-hardcoded.yaml and replace '<your node name>' with one of the nodes in your cluster.
+2. Edit php-apache-hardcoded.yaml and replace "\<your node name\>" with one of the nodes in your cluster.
 
 3. Deploy the workload.
 
