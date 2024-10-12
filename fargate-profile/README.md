@@ -22,7 +22,7 @@ This will create a Fargate profile where any workload deployed to the "fargate" 
         kubectl apply -f php-apache.yaml -n testing
         ./Get-Pods-By-Node.ps1 -n testing
 
-You will see 4 replicas of php-apache running, all on normal K8s nodes.
+You will see 4 replicas of php-apache running, all on normal EKS nodes.
 
 3. Delete the test deployment and re-deploy it in the fargate namespace:
 
