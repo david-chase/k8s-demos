@@ -19,13 +19,13 @@ You can use any of the scenarios in this repo to create your 3-node K8s cluster 
 
 ## Scenario
 ### Hard coding a node name
-This is generally not recommended but is a quick and simple way to assign pods to a node.  This actually bypasses the kubernetes scheduler, with the kubeleter running on the node actually starting the pods.
+This is generally not recommended but is a quick and simple way to assign pods to a node.  This actually bypasses the kubernetes scheduler, with the kubelet running on the node actually starting the pods.
 
 1. Get a list of the nodes in your cluster.
 
         kubectl get no
 
-2. Edit php-apache-hardcoded.yaml and replace "<your node name>" with one of the nodes in your cluster.
+2. Edit php-apache-hardcoded.yaml and replace '<your node name>' with one of the nodes in your cluster.
 
 3. Deploy the workload.
 
@@ -38,3 +38,7 @@ This is generally not recommended but is a quick and simple way to assign pods t
 5. When done, delete your workload:
 
         kubectl delete -f php-apache-hardcoded.yaml
+
+### Node selectors with labels
+This scenario tells the pods in a deployment to show a preference for nodes with certain labels assigned to them.
+
