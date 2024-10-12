@@ -1,0 +1,53 @@
+# Create a namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: testing
+  labels:
+    name: testing
+---
+# Create a Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prodapp
+  namespace: testing
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: prodapp
+  template:
+    metadata:
+      labels:
+        app: prodapp
+    spec:
+      # These pods will only be placed on nodes where "node-restriction.kubernetes.io/env" = "prod"
+      nodeSelector:
+        node-restriction.kubernetes.io/env : prod
+      containers:
+      - name: php-apache
+        image: registry.k8s.io/hpa-example
+---
+# Create a Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devapp
+  namespace: testing
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devapp
+  template:
+    metadata:
+      labels:
+        app: devapp
+    spec:
+      # These pods will only be placed on nodes where "node-restriction.kubernetes.io/env" = "dev"
+      nodeSelector:
+        node-restriction.kubernetes.io/env : dev
+      containers:
+      - name: php-apache
+        image: registry.k8s.io/hpa-example

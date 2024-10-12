@@ -4,7 +4,7 @@
 There are numerous ways to assign pods to run on certain nodes and this scenario will demonstrate most of them including:
 
 * Hard coding a node name
-* Node selectors with labels
+* Node selector with labels
 * Node affinity and anti-affinity
 * Taints and tolerations
 * Pod topology spread constraints
@@ -19,7 +19,7 @@ You can use any of the scenarios in this repo to create your 3-node K8s cluster 
 
 ## Scenario
 ### Before we begin
-Before we begin, let's see how pods in a deployment as distributed across nodes by default.  
+Before we begin, let's see how pods in a deployment are distributed across nodes by default.  
 
 1. Deploy a workload that does no pod assignment
 
@@ -58,6 +58,60 @@ Instead of spreading the replicas evenly across nodes, all 3 replicas will be pl
 
         kubectl delete -f php-apache-hardcoded.yaml
 
-### Node selectors with labels
-This scenario tells the pods in a deployment to show a preference for nodes with certain labels assigned to them.
+### Node selector with labels
+This scenario tells the pods in a deployment to only deploy on nodes with certain labels assigned to them.
 
+1. Deploy a test workload to your cluster.
+
+        kubectl apply -f .\php-apache-nodeselector.yaml -n testing
+
+If you edit php-apache-nodeselector.yaml with a text editor you will see it creates two deployments of 3 replicas each.  Notice that each deployment has a NodeSelector section:
+
+    ...
+    # Create a Deployment
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: prodapp
+    ...
+    spec:
+      # These pods will only be placed on nodes where "node-restriction.kubernetes.io/env" = "prod"
+      nodeSelector:
+        node-restriction.kubernetes.io/env : prod
+    ...
+    # Create a Deployment
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: devapp
+    ....
+    spec:
+      # These pods will only be placed on nodes where "node-restriction.kubernetes.io/env" = "dev"
+      nodeSelector:
+        node-restriction.kubernetes.io/env : dev
+
+Let's check the status of our deployment:
+
+    kubectl get po -n testing
+
+Notice that all of our pods are in Pending status because there are no nodes with matching labels.  Let's change that. Run
+
+    kubectl get no
+
+to see a list of nodes in our cluster.  Run the following command on *one* of the nodes:
+
+    kubectl label node \<first node name\> node-restriction.kubernetes.io/env=prod
+
+Now let's label another node:
+
+    kubectl label node \<second node name\> node-restriction.kubernetes.io/env=dev
+
+Let's check the status of our pods again
+
+    kubectl get po -n testing
+
+All our pods are now in a running state.  Let's confirm they're running on the nodes we've deployed labels to:
+
+    ./Get-Pods-By-Node.ps1 -n testing
+
+    
