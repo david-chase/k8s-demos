@@ -18,6 +18,23 @@ Assigning certain pods to run on certain nodes is part of any complex Kubernetes
 You can use any of the scenarios in this repo to create your 3-node K8s cluster simply by editing config.ini and setting "minsize" to 3.
 
 ## Scenario
+### Before we begin
+Before we begin, let's see how pods in a deployment as distributed across nodes by default.  
+
+1. Deploy a workload that does no pod assignment
+
+        kubectl apply -f php-apache.yaml
+
+2. Check what node(s) the pods have been placed on:
+
+        ./Get-Pods-By-Node.ps1 -n testing
+
+You will notice the default is to spread the pods evenly across the available nodes.  If you have 3 nodes and 3 replicas, one replica will be placed on each node.
+
+3. Delete the workload
+
+        kubectl delete -f php-apache.yaml
+
 ### Hard coding a node name
 This is generally not recommended but is a quick and simple way to assign pods to a node.  This actually bypasses the kubernetes scheduler, with the kubelet running on the node actually starting the pods.
 
@@ -34,6 +51,8 @@ This is generally not recommended but is a quick and simple way to assign pods t
 4. Check what node(s) the pods have been placed on:
 
         ./Get-Pods-By-Node.ps1 -n testing
+
+Instead of spreading the replicas evenly across nodes, all 3 replicas will be placed on the node you specified in the YAML file.
 
 5. When done, delete your workload:
 
