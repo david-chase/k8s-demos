@@ -63,7 +63,7 @@ This scenario tells the pods in a deployment to only deploy on nodes with certai
 
 1. Deploy a test workload to your cluster.
 
-        kubectl apply -f .\php-apache-nodeselector.yaml -n testing
+        kubectl apply -f php-apache-nodeselector.yaml
 
 If you edit php-apache-nodeselector.yaml with a text editor you will see it creates two deployments of 3 replicas each.  Notice that each deployment has a NodeSelector section:
 
@@ -114,4 +114,6 @@ All our pods are now in a running state.  Let's confirm they're running on the n
 
     ./Get-Pods-By-Node.ps1 -n testing
 
-    
+Notice that the "prodapp" pods are all running on the node we labeled as "prod" while the "devapp" pods are running on the node we labeled as "dev".  When done, delete your deployment by running
+
+    kubectl delete -f php-apache-nodeselector.yaml
