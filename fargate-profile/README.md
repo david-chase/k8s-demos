@@ -12,7 +12,7 @@ This is a simple scenario that demonstrates how to add a Fargate profile to an e
 ## Scenario
 1. With your cluster already deployed and working, run the following command:
 
-      eksctl create fargateprofile --namespace fargate --cluster <your cluster name> --name fargate-profile  
+        eksctl create fargateprofile --namespace fargate --cluster <your cluster name> --name fargate-profile  
 
 This will create a Fargate profile where any workload deployed to the "fargate" namespace will be executed on Fargate nodes. 
 
