@@ -128,7 +128,7 @@ Deploy a test workload to your cluster.
 
     kubectl apply -f php-apache-affinity.yaml
 
-If you edit php-apache-nodeselector.yaml with a text editor you will see it creates three deployments of 3 replicas each.  The first deployment tries asks to be placed on nodes with the label node-restriction.kubernetes.io/env has the value "prod", the second where it has the value "dev" and the third on asks to be placed on nodes with no node-restriction.kubernetes.io/env label at all. 
+If you edit php-apache-nodeselector.yaml with a text editor you will see it creates three deployments of 3 replicas each.  The first deployment asks to be placed on nodes where the label node-restriction.kubernetes.io/env has the value "prod", the second where it has the value "dev" and the third asks to be placed on nodes with no node-restriction.kubernetes.io/env label at all. 
 
 Let's check the status of our deployment:
 
@@ -156,4 +156,4 @@ When done, delete your deployment and unlabel your nodes:
     kubectl label node \<second node name\> node-restriction.kubernetes.io/env= --overwrite
 
 ### Taints and tolerations
-Probably the most common way to assign pods to nodes is with taints and tolerations.  Taints are applied to nodes as key/value pairs.  Tainted nodes will repel all pods that do not have a matching toleration.  In this way provide better control of pod placement, as *only* the pods you want can be applied to a tainted node.
+Probably the most common way to assign pods to nodes is with taints and tolerations.  Taints are applied to nodes as key/value pairs.  Tainted nodes will repel all pods that do not have a matching toleration.  In this way they provide better control of pod placement, as *only* the pods you want can be applied to a tainted node.
