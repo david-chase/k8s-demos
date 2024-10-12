@@ -1,0 +1,98 @@
+# Create a namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: testing
+  labels:
+    name: testing
+---
+# Create a Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prodapp
+  namespace: testing
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: prodapp
+  template:
+    metadata:
+      labels:
+        app: prodapp
+    spec:
+      # These pods will only be placed on nodes where "node-restriction.kubernetes.io/env" = "prod"
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: node-restriction.kubernetes.io/env
+                operator: In
+                values:
+                - prod
+      containers:
+      - name: php-apache
+        image: registry.k8s.io/hpa-example
+---
+# Create a Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devapp
+  namespace: testing
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devapp
+  template:
+    metadata:
+      labels:
+        app: devapp
+    spec:
+      # These pods will only be placed on nodes where "node-restriction.kubernetes.io/env" = "dev"
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: node-restriction.kubernetes.io/env
+                operator: In
+                values:
+                - dev
+      containers:
+      - name: php-apache
+        image: registry.k8s.io/hpa-example
+---
+# Create a Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nolabel
+  namespace: testing
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nolabel
+  template:
+    metadata:
+      labels:
+        app: nolabel
+    spec:
+      # These pods will only be placed on nodes where node-restriction.kubernetes.io/"env" isn't set at all
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: node-restriction.kubernetes.io/env
+                operator: DoesNotExist
+      containers:
+      - name: php-apache
+        image: registry.k8s.io/hpa-example

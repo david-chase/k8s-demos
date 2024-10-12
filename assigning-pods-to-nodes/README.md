@@ -5,7 +5,7 @@ There are numerous ways to assign pods to run on certain nodes and this scenario
 
 * Hard coding a node name
 * Node selector with labels
-* Node affinity and anti-affinity
+* Node affinity
 * Taints and tolerations
 * Pod topology spread constraints
 
@@ -61,9 +61,9 @@ Instead of spreading the replicas evenly across nodes, all 3 replicas will be pl
 ### Node selector with labels
 This scenario tells the pods in a deployment to only deploy on nodes with certain labels assigned to them.
 
-1. Deploy a test workload to your cluster.
+Deploy a test workload to your cluster.
 
-        kubectl apply -f php-apache-nodeselector.yaml
+    kubectl apply -f php-apache-nodeselector.yaml
 
 If you edit php-apache-nodeselector.yaml with a text editor you will see it creates two deployments of 3 replicas each.  Notice that each deployment has a NodeSelector section:
 
@@ -98,11 +98,11 @@ Notice that all of our pods are in Pending status because there are no nodes wit
 
     kubectl get no
 
-to see a list of nodes in our cluster.  Run the following command on *one* of the nodes:
+to see a list of nodes in our cluster.  Run the following command for *one* of the nodes:
 
     kubectl label node \<first node name\> node-restriction.kubernetes.io/env=prod
 
-Now let's label another node:
+Now run the following command for a *different* node:
 
     kubectl label node \<second node name\> node-restriction.kubernetes.io/env=dev
 
@@ -117,3 +117,43 @@ All our pods are now in a running state.  Let's confirm they're running on the n
 Notice that the "prodapp" pods are all running on the node we labeled as "prod" while the "devapp" pods are running on the node we labeled as "dev".  When done, delete your deployment by running
 
     kubectl delete -f php-apache-nodeselector.yaml
+
+### Node affinity and anti-affinity
+Let's temporarily remove the node labels we created in the previous exercise so we can see how node affinity differs from NodeSelector.
+
+    kubectl label node \<first node name\> node-restriction.kubernetes.io/env= --overwrite
+    kubectl label node \<second node name\> node-restriction.kubernetes.io/env= --overwrite
+
+Deploy a test workload to your cluster.
+
+    kubectl apply -f php-apache-affinity.yaml
+
+If you edit php-apache-nodeselector.yaml with a text editor you will see it creates three deployments of 3 replicas each.  The first deployment tries asks to be placed on nodes with the label node-restriction.kubernetes.io/env has the value "prod", the second where it has the value "dev" and the third on asks to be placed on nodes with no node-restriction.kubernetes.io/env label at all. 
+
+Let's check the status of our deployment:
+
+    kubectl get po -n testing
+
+Notice that unlike in the previous exercise, all the pods are scheduled even though none of our nodes are labeled.  This is because we specified "preferredDuringSchedulingIgnoredDuringExecution" in our YAML manifest.  However if you run "Get-Pods-By-Node.ps1 -n testing" you'll notice the pods were placed without any order.
+
+Let's delete this deployment, label our nodes again, and redeploy:
+
+    kubectl delete -f php-apache-affinity.yaml
+    kubectl label node \<first node name\> node-restriction.kubernetes.io/env=prod
+    kubectl label node \<second node name\> node-restriction.kubernetes.io/env=dev
+    kubectl apply -f php-apache-affinity.yaml
+
+Now let's check how our pods have been placed:
+
+    ./Get-Pods-By-Node.ps1 -n testing
+
+As expected, the "prodapp" pods are all running on the node we labeled as "prod", the "devapp" pods are running on the node we labeled as "dev", and the "nolabel" pods are running on the node with no "node-restriction.kubernetes.io/env" label at all.
+
+When done, delete your deployment and unlabel your nodes:
+
+    kubectl delete -f php-apache-affinity.yaml
+    kubectl label node \<first node name\> node-restriction.kubernetes.io/env= --overwrite
+    kubectl label node \<second node name\> node-restriction.kubernetes.io/env= --overwrite
+
+### Taints and tolerations
+Probably the most common way to assign pods to nodes is with taints and tolerations.  Taints are applied to nodes as key/value pairs.  Tainted nodes will repel all pods that do not have a matching toleration.  In this way provide better control of pod placement, as *only* the pods you want can be applied to a tainted node.
