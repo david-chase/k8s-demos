@@ -9,7 +9,7 @@ There are numerous ways to assign pods to run on certain nodes and this scenario
 * Taints and tolerations
 * Pod topology spread constraints
 
-
+Assigning certain pods to run on certain nodes is part of any complex Kubernetes deployment and can be done to ensure pods run on nodes that have specialized hardware they require (like GPUs), to make sure a team's workloads run on the nodes they're paying for (and no one else's), to prevent expensive cross-zone network traffic, to ensure a fault-tolerant cluster, and more.
 
 ## Prerequisites
 1. A functional Kubernetes cluster with at least 3 nodes
@@ -25,28 +25,7 @@ This is generally not recommended but is a quick and simple way to assign pods t
 
         kubectl get no
 
-2. Save the following file as php-apache-hardcoded.yaml, replacing <your node name> with the name of one of the nodes in your cluster.
-
-        # Create a Deployment
-        apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-        name: php-apache
-        namespace: testing
-        spec:
-        replicas: 3
-        selector:
-        matchLabels:
-        app: demo
-        template:
-        metadata:
-        labels:
-                app: demo
-        spec:
-        containers:
-        - name: php-apache
-                image: registry.k8s.io/hpa-example
-        nodeName: <your node name>
+2. Edit php-apache-hardcoded.yaml and replace "<your node name>" with one of the nodes in your cluster.
 
 3. Deploy the workload.
 
