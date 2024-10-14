@@ -25,7 +25,7 @@ Before we begin, let's see how pods in a deployment are distributed across nodes
 
         ./Get-Pods-By-Node.ps1 -n testing
 
-You will notice the default is to spread the pods evenly across the available nodes.  If you have 3 nodes and 3 replicas, one replica will be placed on each node.  Leave the workload you just deployed running as we move on to the next part of the scenario.
+You'll notice the default is to spread the pods evenly across the available nodes.  If you have 3 nodes and 3 replicas, one replica will be placed on each node.  Leave the workload you just deployed running as we move on to the next part of the scenario.
 
 ### Tainting nodes
 
@@ -55,7 +55,7 @@ You will notice that the pod that was running on the node you just tainted has b
 
 As expected, all the pods in our test workload have now been moved to the only node without a taint.  
 
-6. Edit the file php-tolerations.yaml with a text editor.  Note the following two sections:
+6. Edit the file php-apache-tolerations.yaml with a text editor.  Note the following two sections:
 
                 ...
                 tolerations:
