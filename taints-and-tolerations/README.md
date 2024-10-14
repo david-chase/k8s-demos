@@ -47,7 +47,7 @@ You will notice that the pod that was running on the node you just tainted has b
 
 4. Apply a second taint to a *different* node
 
-        kubectl taint node \<node name\> GPU=true:NoExecute
+        kubectl taint node <node name> GPU=true:NoExecute
 
 5. Check again what pods are running on which nodes:
 
@@ -102,15 +102,15 @@ Let's complete a few more steps to ensure that:
 
 2. Apply labels to our tainted nodes.  If you're having trouble remembering which nodes have which taints, simply run the following:
 
-        kubectl describe node \<node name\> | Select-String "Taint"
+        kubectl describe node <node name> | Select-String "Taint"
 
 On the node with the "disktype=SSD" taint:
 
-        kubectl label node \<node name\> disktype=SSD
+        kubectl label node <node name> disktype=SSD
 
 On the node with the "GPU=true" taint:
 
-        kubectl label node \<node name\> GPU=true
+        kubectl label node <node name> GPU=true
 
 3. Edit php-apache-tolerations-and-node-affinity.yaml with a text editor.  Notice that in our two deployments we now have a section that defines a toleration (these pods *can* run on nodes with a matching taint) and a node affinity (these pods *must* run on a node with the following labels).
 
@@ -127,10 +127,10 @@ This should look very similar to the previous scenario, but with an important di
 6. Let's undo our changes by deleting our workloads, and removing our node labels and taints.  
 
         kubectl delete -f php-apache-tolerations-and-node-affinity.yaml
-        kubectl label node \<node name\> GPU= --overwrite
-        kubectl label node \<node name\> disktype= --overwrite
-        kubectl taint node \<node name\> GPU=true:NoExecute-
-        kubectl taint node \<node name\> disktype-SSD:NoExecute-
+        kubectl label node <node name> GPU= --overwrite
+        kubectl label node <node name> disktype= --overwrite
+        kubectl taint node <node name> GPU=true:NoExecute-
+        kubectl taint node <node name> disktype-SSD:NoExecute-
 
 If you're having trouble remembering which nodes have which labels and taints applied, try these helpful commands:
 
@@ -138,4 +138,4 @@ If you're having trouble remembering which nodes have which labels and taints ap
         kubectl get no -l disktype=SSD
         kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints
 
-Done!
+This concludes the scenario.
