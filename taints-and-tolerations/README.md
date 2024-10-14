@@ -88,7 +88,7 @@ You should find that only pods with a matching toleration have been scheduled on
 
 It's because adding a toleration to a pod merely says that it's *capable* of running on a node with a matching taint, not that it *must*.  If you want certain pods to *only* run on tainted nodes and no other, you can do this by combining taints, tolerations, and node affinity.
 
-### Taints, tolerations, and node affinity
+### Taints, tolerations, and node affinity -- true fine-grained control
 Let's complete a few more steps to ensure that:
 
 * Pods with no tolerations only execute on the node with no taints
