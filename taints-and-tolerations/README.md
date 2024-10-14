@@ -35,7 +35,7 @@ You will notice the default is to spread the pods evenly across the available no
 
 2. Apply a taint to one of the nodes
 
-        kubectl taint node \<node name\> disktype=SSD:NoExecute
+        kubectl taint node <node name> disktype=SSD:NoExecute
 
 The ":NoExecute" portion of this command line is known as the effect.  A "NoExecute" effect means that any pods running on the node that do not match this taint cannot even execute on the node and will be immediately evicted.  A "NoSchedule" effect means existing pods running on the node may continue to run, but new pods won't be scheduled on this node unless they have a matching toleration.
 
