@@ -11,7 +11,7 @@ Remember: taints are applied to nodes, tolerations are applied to pods.
 1. A functional Kubernetes cluster with at least 3 nodes
 2. PowerShell Core
 
-You can use any of the scenarios in this repo to create your 3-node K8s cluster simply by editing config.ini and setting "minsize" to 3.
+You can use any of the "create-cluster-with-autoscaler" scenarios in this repo to create your 3-node K8s cluster simply by editing config.ini and setting "minsize" to 3.
 
 ## Scenario
 ### Before we begin
@@ -122,7 +122,7 @@ On the node with the "GPU=true" taint:
 
         ./Get-Pods-By-Node.ps1 -n testing
 
-This should look very similar to the previous scenario, but with an important difference.  In the previous scenario our pods with tolerations *could* run on an untainted node.  In this scenario we're forcing them to run on a particular node, and none other.
+This should look very similar to the previous scenario, but with an important difference.  In the previous scenario our pods with tolerations *could* run on an untainted node.  In this scenario we're forcing them to run on a particular node, and none other.  And what works for 1 or 2 nodes works at scale.  Using the exact same techiques we could have dozens of nodes that only run GPU-enabled workloads, dozens of nodes that run workloads that require local SSD storage, and dozens of other nodes that run "everything else".
 
 6. Let's undo our changes by deleting our workloads, and removing our node labels and taints.  
 
