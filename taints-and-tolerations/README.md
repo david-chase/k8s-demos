@@ -1,4 +1,4 @@
-# Assigning pods to nodes
+# Assigning pods to nodes using Taints and Tolerations
 
 ## Introduction
 In the [assigning pods to nodes](https://github.com/dbc13543/k8s-demos/tree/master/assigning-pods-to-nodes) exercise we learned about node selectors and node affinity as ways of assigning pods to specific nodes.  However while these methods are effective at forcing certain workloads onto specific nodes, what they don't do is *prevent unwanted pods* from running on those nodes.  This is where taints and tolerations come in.
