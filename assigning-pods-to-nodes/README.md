@@ -1,13 +1,11 @@
 # Assigning pods to nodes
 
 ## Introduction
-There are numerous ways to assign pods to run on certain nodes and this scenario will demonstrate most of them including:
+There are numerous ways to assign pods to run on certain nodes and this scenario will demonstrate three of them:
 
 * Hard coding a node name
 * Node selector with labels
 * Node affinity
-* Taints and tolerations
-* Pod topology spread constraints
 
 Assigning certain pods to run on certain nodes is part of any complex Kubernetes deployment and can be done to ensure pods run on nodes that have specialized hardware they require (like GPUs), to make sure a team's workloads run on the nodes they're paying for (and no one else's), to prevent expensive cross-zone network traffic, to ensure a fault-tolerant cluster, and more.
 
@@ -154,6 +152,3 @@ When done, delete your deployment and unlabel your nodes:
     kubectl delete -f php-apache-affinity.yaml
     kubectl label node \<first node name\> node-restriction.kubernetes.io/env= --overwrite
     kubectl label node \<second node name\> node-restriction.kubernetes.io/env= --overwrite
-
-### Taints and tolerations
-Probably the most common way to assign pods to nodes is with taints and tolerations.  Taints are applied to nodes as key/value pairs.  Tainted nodes will repel all pods that do not have a matching toleration.  In this way they provide better control of pod placement, as *only* the pods you want can be applied to a tainted node.
