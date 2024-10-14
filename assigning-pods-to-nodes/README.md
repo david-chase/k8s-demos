@@ -150,5 +150,5 @@ As expected, the "prodapp" pods are all running on the node we labeled as "prod"
 When done, delete your deployment and unlabel your nodes:
 
     kubectl delete -f php-apache-affinity.yaml
-    kubectl label node \<first node name\> node-restriction.kubernetes.io/env= --overwrite
-    kubectl label node \<second node name\> node-restriction.kubernetes.io/env= --overwrite
+    kubectl label node <first node name> node-restriction.kubernetes.io/env= --overwrite
+    kubectl label node <second node name> node-restriction.kubernetes.io/env= --overwrite
