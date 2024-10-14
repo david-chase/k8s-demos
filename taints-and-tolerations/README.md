@@ -93,7 +93,7 @@ Let's complete a few more steps to ensure that:
 
 * Pods with no tolerations only execute on the node with no taints
 * Pods with a toleration of "disktype=SSD" only run on nodes with a "disktype=SSD" taint
-* Pods with a toleration of "GPU=true" only run on nodes with a "GPU-true" taint
+* Pods with a toleration of "GPU=true" only run on nodes with a "GPU=true" taint
 
 1. Delete the workload we just deployed and redeploy the "vanilla" workload that has no tolerations.
 
