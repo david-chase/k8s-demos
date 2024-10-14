@@ -5,7 +5,7 @@ In the [assigning pods to nodes](https://github.com/dbc13543/k8s-demos/tree/mast
 
 Taints are applied to nodes as key/value pairs.  Tainted nodes will repel all pods that do not have a matching toleration.  In this way they provide better control of pod placement, as *only* the pods you want can be applied to a tainted node.
 
-Remember: Taints are applied to nodes, tolerations are applied to pods.
+Remember: taints are applied to nodes, tolerations are applied to pods.
 
 ## Prerequisites
 1. A functional Kubernetes cluster with at least 3 nodes
@@ -25,7 +25,7 @@ Before we begin, let's see how pods in a deployment are distributed across nodes
 
         ./Get-Pods-By-Node.ps1 -n testing
 
-You will notice the default is to spread the pods evenly across the available nodes.  If you have 3 nodes and 3 replicas, one replica will be placed on each node.  Leave th
+You will notice the default is to spread the pods evenly across the available nodes.  If you have 3 nodes and 3 replicas, one replica will be placed on each node.  Leave the workload you just deployed running as we move on to the next part of the scenario.
 
 ### Tainting nodes
 
