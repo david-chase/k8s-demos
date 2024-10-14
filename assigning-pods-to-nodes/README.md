@@ -98,11 +98,11 @@ Notice that all of our pods are in Pending status because there are no nodes wit
 
 to see a list of nodes in our cluster.  Run the following command for *one* of the nodes:
 
-    kubectl label node \<first node name\> node-restriction.kubernetes.io/env=prod
+    kubectl label node <first node name> node-restriction.kubernetes.io/env=prod
 
 Now run the following command for a *different* node:
 
-    kubectl label node \<second node name\> node-restriction.kubernetes.io/env=dev
+    kubectl label node <second node name> node-restriction.kubernetes.io/env=dev
 
 Let's check the status of our pods again
 
@@ -119,8 +119,8 @@ Notice that the "prodapp" pods are all running on the node we labeled as "prod" 
 ### Node affinity and anti-affinity
 Let's temporarily remove the node labels we created in the previous exercise so we can see how node affinity differs from NodeSelector.
 
-    kubectl label node \<first node name\> node-restriction.kubernetes.io/env= --overwrite
-    kubectl label node \<second node name\> node-restriction.kubernetes.io/env= --overwrite
+    kubectl label node <first node name> node-restriction.kubernetes.io/env= --overwrite
+    kubectl label node <second node name> node-restriction.kubernetes.io/env= --overwrite
 
 Deploy a test workload to your cluster.
 
@@ -137,8 +137,8 @@ Notice that unlike in the previous exercise, all the pods are scheduled even tho
 Let's delete this deployment, label our nodes again, and redeploy:
 
     kubectl delete -f php-apache-affinity.yaml
-    kubectl label node \<first node name\> node-restriction.kubernetes.io/env=prod
-    kubectl label node \<second node name\> node-restriction.kubernetes.io/env=dev
+    kubectl label node <first node name> node-restriction.kubernetes.io/env=prod
+    kubectl label node <second node name> node-restriction.kubernetes.io/env=dev
     kubectl apply -f php-apache-affinity.yaml
 
 Now let's check how our pods have been placed:
