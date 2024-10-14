@@ -71,7 +71,7 @@ As expected, all the pods in our test workload have now been moved to the only n
                   effect: "NoExecute"
                 ...
 
-Notice that one of our deployments has a toleration that matches the first taint we applied to a node.  The second deployment has a toleration that matches the second taint we applied.  In this scenario we're simulating some pods being forced onto nodes that have a local attached SSD, and others being forced onto nodes that have a GPU.  Kubernetes has no knowledge of whether a node has a GPU or an SSD, of course.  The onus is on you, the administrator, to ensure you're intelligently labelling your nodes when you create them.
+Notice that one of our deployments has a toleration that matches the first taint we applied to a node.  The second deployment has a toleration that matches the second taint we applied.  In this scenario we're simulating some pods being allowed onto nodes that have a local attached SSD, and others being allowed onto nodes that have a GPU.  Kubernetes has no knowledge of whether a node has a GPU or an SSD, of course.  The onus is on you, the administrator, to ensure you're intelligently labelling your nodes when you create them.
 
 Keep in mind that the key, operator, values, and effect of a toleration must match the taint applied to the node.  This means that if the taint you applied to the node has a "NoSchedule" effect but the toleration applied to the pods is "NoExecute", then the taints and tolerations do not match and the pods will not be scheduled on the tainted node.
 
