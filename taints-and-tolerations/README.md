@@ -102,7 +102,7 @@ Let's complete a few more steps to ensure that:
 
 2. Apply labels to our tainted nodes.  If you're having trouble remembering which nodes have which taints, simply run the following:
 
-        kubectl describe node <node name> | Select-String "Taint"
+        kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints
 
 On the node with the "disktype=SSD" taint:
 
