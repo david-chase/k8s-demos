@@ -27,7 +27,9 @@ It is released under the [MIT license](https://github.com/a8m/envsubst/blob/mast
 
 ## Scenario
 
-1. Start by running 
+1. Edit config.ini with a text editor and customize to your needs.
+
+2. Start by running 
 
         Build-Cluster.ps1
         
@@ -35,7 +37,7 @@ This script will take 15-25 minutes to execute and will provision everything for
 
 The script will show you all the commands it's running, and don't hesitate to open the script in a text editor to see how it works.
 
-2. Check how many nodes are part of your cluster by typing 
+3. Check how many nodes are part of your cluster by typing 
 
         kubectl get no
         
