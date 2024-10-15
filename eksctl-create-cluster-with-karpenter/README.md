@@ -5,8 +5,6 @@ This scenario will build an EKS cluster using the eksctl utility and deploy Karp
 
 Note that there is roughly a $70USD monthly fee to run the control plane, plus the cost of the managed node group, so you will probably want to destroy this cluster after you're finished with it.
 
-Lastly, deploying Karpenter with all the required roles, policies, and CloudFormation templates can be complicated.  For this reason most of the heavy lifting in this scenario is accomplished by the Build-Cluster.ps1 script.  Wherever possible it shows you the commands it's running, and you can also edit the script with a text editor to get a better idea what it's doing.
-
 This scenario is based on the "Getting Started With Karpenter" tutorial at https://karpenter.sh/docs/getting-started/getting-started-with-karpenter/
 
 ## Prerequisites
