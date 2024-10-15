@@ -33,6 +33,8 @@ It is released under the [MIT license](https://github.com/a8m/envsubst/blob/mast
         
 This script will take 15-25 minutes to execute and will provision everything for you.  Try to avoid halting the script in mid-execution as doing so may leave some vestiges behind that must be cleaned up manually.
 
+The script will show you all the commands it's running, and don't hesitate to open the script in a text editor to see how it works.
+
 2. Check how many nodes are part of your cluster by typing 
 
         kubectl get no
