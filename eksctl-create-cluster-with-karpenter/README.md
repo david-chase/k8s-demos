@@ -41,7 +41,7 @@ The script will show you all the commands it's running, and don't hesitate to op
         
 You'll notice there is one node running at all times.  Karpenter requires at least one node be created first, to host kube-system components and karpenter itself.  This first node is NOT managed by Karpenter but is instead just a regular EKS Managed Node Pool with a single node.
 
-4. Start your test deployment by typing
+4. Let's see some autoscaling in action.  Start your test deployment by typing
 
         kubectl apply -f php-apache.yaml
 
