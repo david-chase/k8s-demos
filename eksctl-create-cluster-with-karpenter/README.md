@@ -47,7 +47,7 @@ You'll notice there is one node running at all times.  Karpenter requires at lea
 
 5. Check how and where your deployment is running by typing 
 
-    Get-Pods-By-Node.ps1 -n testing
+        Get-Pods-By-Node.ps1 -n testing
     
 You'll notice only a single pod running in the "testing" namespace on your single node.
 
