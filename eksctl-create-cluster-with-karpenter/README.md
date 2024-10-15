@@ -27,8 +27,7 @@ It is released under the [MIT license](https://github.com/a8m/envsubst/blob/mast
 
 ## Scenario
 
-1. Edit config.ini with a text editor and customize to your needs.
-
+1. Set your cluster preferences by editing config.ini
 2. Start by running 
 
         Build-Cluster.ps1
