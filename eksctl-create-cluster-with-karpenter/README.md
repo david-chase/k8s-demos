@@ -47,7 +47,7 @@ You'll notice there is one node running at all times.  Karpenter requires at lea
 
 5. Check how and where your deployment is running by typing 
 
-        Get-Pods-By-Node.ps1 -n testing
+        .\Get-Pods-By-Node.ps1 -n testing
     
 You'll notice only a single pod running in the "testing" namespace on your single node.
 
@@ -65,16 +65,20 @@ You should see some pods in a Pending state because we don't have enough node ca
 
 You may see a node in the process of being provisioned.  Continue to run these two commands until we see all pods in a Running state and all nodes are Ready.
 
-8. Go to the AWS console and find your EKS cluster.  Click on it to see properties then click the "Compute" tab to see any nodes assigned to it.  Note that the first node created will be part of a managed node group and should be running on a t3.medium instance.  Any nodes that aren't in a node group were scaled out by Karpenter.
+8. See all the pods in your deployment and the nodes they're running on.
 
-9. Click on one of the Karpenter nodes, then scroll down to Labels, and find the label karpenter.sh/capacity-type.  This will read either "on demand" or "spot".  Note that the instance type can be any one of many.  The allowable instance types are defined in nodepool.yaml.
+        .\Get-Pods-By-Node.ps1 -n testing
+
+9. Go to the AWS console and find your EKS cluster.  Click on it to see properties then click the "Compute" tab to see any nodes assigned to it.  Note that the first node created will be part of a managed node group and should be running on a t3.medium instance.  Any nodes that aren't in a node group were scaled out by Karpenter.
+
+10. Click on one of the Karpenter nodes, then scroll down to Labels, and find the label karpenter.sh/capacity-type.  This will read either "on demand" or "spot".  Note that the instance type can be any one of many.  The allowable instance types are defined in nodepool.yaml.
 
 <img src="https://i.imgur.com/74AtlHK.png" width=500>
 
-10. Scale your deployment back down and see what happens with the nodes by typing
+11. Scale your deployment back down and see what happens with the nodes by typing
 
         kubectl scale deploy php-apache -n testing --replicas=1
         
 After a few minutes you should start seeing the Karpenter nodes disappear.
 
-11. When you've finished your testing, deprovision the resources by running Destroy-Cluster.ps1.  This will take several minutes.
+12. When you've finished your testing, deprovision the resources by running Destroy-Cluster.ps1.  This will take several minutes.
