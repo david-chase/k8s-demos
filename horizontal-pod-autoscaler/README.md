@@ -55,15 +55,25 @@ You should see multiple php-apache pods running now, up to a maximum of 5.  This
 
 This will show you the status and properties of the autoscaler you just created.
 
-8. Stop generating load by returning to the PowerShell window where the load generator is running and pressing Ctl-C.
+8. Let's patch the autoscaler definition in place to increase the max number of replicas to 8
 
-9. Check again how many pods are running.
+        kubectl patch HorizontalPodAutoscaler demo -n testing -p '{"spec": { "maxReplicas": 8 }}'
+
+9. Confirm how many pods are now running.
+
+        kubectl get po -n testing
+
+You should now see 8 replicas running.
+
+10. Stop generating load by returning to the PowerShell window where the load generator is running and pressing Ctl-C.
+
+11. Check again how many pods are running.
 
         kubectl get po -n testing
 
 You will probably still see 5 pods running.  While HPA will scale a deployment up very quickly, it scales down more slowly.  By default it takes 5 minutes to scale down a deployment.  If you'd like to see your deployment scale back down to 1 replica, wait 5 minutes and run "kubectl get po -n testing" again.
 
-10. When done, roll back your changes.
+12. When done, roll back your changes.
 
         kubectl delete -f hpa.yaml
         kubectl delete -f php-apache.yaml
