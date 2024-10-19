@@ -57,4 +57,6 @@ To connect to your Prometheus instance, run the following
 
     kubectl port-forward svc/prometheus-grafana -n monitoring 3001:80
 
-Now open a web browser and connect to http://127.0.0.1:3001.  Press Ctl-C at the command-line when done to stop port forwarding.
+Now open a web browser and connect to http://127.0.0.1:3001.  The default username for Grafana is "admin" and the default password is "prom-operator".
+
+Press Ctl-C at the command-line when done to stop port forwarding.
