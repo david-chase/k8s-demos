@@ -20,22 +20,53 @@ $env:K8S_VERSION = $oConfig.version
 $env:AWS_PARTITION = "aws" # if you are not using standard partitions, you may need to configure to aws-cn / aws-us-gov
 $env:CLUSTER_NAME = $oConfig.clustername
 
-Write-Host Deleting CF stacks -ForegroundColor Cyan
-Write-Host 'aws cloudformation delete-stack --stack-name "Karpenter-'$env:CLUSTER_NAME'"' -ForegroundColor Green
-Write-Host 'aws cloudformation delete-stack --stack-name ( "eksctl-"'$env:CLUSTER_NAME'"-addon-vpc-cni" )' -ForegroundColor Green
-Write-Host 'aws cloudformation delete-stack --stack-name ( "eksctl-"'$env:CLUSTER_NAME'"-cluster" )' -ForegroundColor Green
-aws cloudformation delete-stack --stack-name "Karpenter-$env:CLUSTER_NAME"
-aws cloudformation delete-stack --stack-name ( "eksctl-" + $env:CLUSTER_NAME + "-addon-vpc-cni" )
-aws cloudformation delete-stack --stack-name ( "eksctl-" + $env:CLUSTER_NAME + "-cluster" )
+Write-Host Deleting CloudFormation templates -ForegroundColor Cyan
+$sParams1 = "cloudformation delete-stack --stack-name eksctl-" + $oConfig.clustername + "-addon-vpc-cni"
+Write-Host $sParams1 -ForegroundColor Green
+$sParams2 = "cloudformation delete-stack --stack-name eksctl-" + $oConfig.clustername + "-cluster"
+Write-Host $sParams2 -ForegroundColor Green
+$sParams3 = "cloudformation delete-stack --stack-name eksctl-" + $oConfig.clustername + "-nodegroup-" + $oConfig.ngname
+Write-Host $sParams3 -ForegroundColor Green
+$sParams4 = "cloudformation delete-stack --stack-name Karpenter-" + $oConfig.clustername #  + " --deletion-mode FORCE_DELETE_STACK"
+Write-Host $sParams4 -ForegroundColor Green
+
+Start-Process "aws" -ArgumentList $sParams1 -Wait -NoNewWindow
+Start-Process "aws" -ArgumentList $sParams2 -Wait -NoNewWindow
+Start-Process "aws" -ArgumentList $sParams3 -Wait -NoNewWindow
+Start-Process "aws" -ArgumentList $sParams4 -Wait -NoNewWindow
 
 Write-Host `nDeleting cluster -ForegroundColor Cyan
 Write-Host "eksctl delete cluster --name $env:CLUSTER_NAME" -ForegroundColor Green
 eksctl delete cluster --name $env:CLUSTER_NAME
 
-Write-Host `nPausing for 5 minutes to allow the cluster to deprovision -ForegroundColor Cyan
-Start-Sleep -Seconds 250
+Write-Host "`nPausing for 10 minutes to allow the cluster to deprovision" -ForegroundColor Cyan
+Start-Sleep -Seconds 500
+
+Write-Host "Forcing deletion of any CloudFormation templates in case they failed" -ForegroundColor Cyan
+$sParams1 = "cloudformation delete-stack --stack-name eksctl-" + $oConfig.clustername + "-addon-vpc-cni --deletion-mode FORCE_DELETE_STACK"
+Write-Host $sParams1 -ForegroundColor Green
+$sParams2 = "cloudformation delete-stack --stack-name eksctl-" + $oConfig.clustername + "-cluster --deletion-mode FORCE_DELETE_STACK"
+Write-Host $sParams2 -ForegroundColor Green
+$sParams3 = "cloudformation delete-stack --stack-name eksctl-" + $oConfig.clustername + "-nodegroup-" + $oConfig.ngname + " --deletion-mode FORCE_DELETE_STACK"
+Write-Host $sParams3 -ForegroundColor Green
+$sParams4 = "cloudformation delete-stack --stack-name Karpenter-" + $oConfig.clustername + " --deletion-mode FORCE_DELETE_STACK"
+Write-Host $sParams4 -ForegroundColor Green
+
+Start-Process "aws" -ArgumentList $sParams1 -Wait -NoNewWindow
+Start-Process "aws" -ArgumentList $sParams2 -Wait -NoNewWindow
+Start-Process "aws" -ArgumentList $sParams3 -Wait -NoNewWindow
+Start-Process "aws" -ArgumentList $sParams4 -Wait -NoNewWindow
 
 Write-Host `nDeleting IAM role -ForegroundColor Cyan
+
+$sRoleName = "KarpenterNodeRole-" + $env:CLUSTER_NAME
+$aInstanceProfiles = aws iam list-instance-profiles-for-role --role-name $sRoleName --output json | ConvertFrom-json
+
+for( $i = 0; $i -lt $aInstanceProfiles.Count; $i++ ) {
+    Write-Host "aws iam remove-role-from-instance-profile --instance-profile-name " + $aInstanceProfiles.InstanceProfiles[ $i ].InstanceProfileName + " --role-name $sRoleName" -ForegroundColor Green
+    aws iam remove-role-from-instance-profile --instance-profile-name $aInstanceProfiles.InstanceProfiles[ $i ].InstanceProfileName --role-name $sRoleName
+}
+
 Write-Host "aws iam delete-role --role-name KarpenterNodeRole-$env:CLUSTER_NAME" -ForegroundColor Green
 aws iam delete-role --role-name ( "KarpenterNodeRole-" + $env:CLUSTER_NAME )
 

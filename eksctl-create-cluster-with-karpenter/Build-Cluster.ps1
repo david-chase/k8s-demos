@@ -14,7 +14,7 @@ $env:CLUSTER_CREATEDATE = ( Get-Date -format "yyyy.MM.dd" )
 $oStopWatch = New-Object -TypeName System.Diagnostics.Stopwatch
 $oStopWatch.Start()
 
-Write-Host `nReading AWS settings  -ForegroundColor Cyan
+Write-Host `nReading AWS settings -ForegroundColor Cyan
 $env:KARPENTER_NAMESPACE = $oConfig.karpenternamespace
 $env:KARPENTER_VERSION = $oConfig.karpenterversion
 $env:K8S_VERSION = $oConfig.version
@@ -50,6 +50,11 @@ Write-Host "envsubst -i .\cluster.template -o cluster.config" -ForegroundColor G
 envsubst -i .\cluster.template -o cluster.config 
 Write-Host "eksctl create cluster -f cluster.config" -ForegroundColor Green
 eksctl create cluster -f cluster.config
+
+Write-Host "`nExporting kubeconfig" -ForegroundColor Cyan
+Write-Host "aws eks update-kubeconfig --region $env:AWS_DEFAULT_REGION --name $env:CLUSTER_NAME" -ForegroundColor Green
+aws eks update-kubeconfig --region $env:AWS_DEFAULT_REGION --name $env:CLUSTER_NAME
+
 
 $env:CLUSTER_ENDPOINT="$(aws eks describe-cluster --name "$env:CLUSTER_NAME" --query "cluster.endpoint" --output text)"
 $env:KARPENTER_IAM_ROLE_ARN="arn:$env:AWS_PARTITION:iam::$env:AWS_ACCOUNT_ID:role/$env:CLUSTER_NAME-karpenter"
