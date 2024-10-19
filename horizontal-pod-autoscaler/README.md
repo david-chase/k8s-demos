@@ -59,11 +59,12 @@ This will show you the status and properties of the autoscaler you just created.
 
         kubectl patch HorizontalPodAutoscaler demo -n testing -p '{"spec": { "maxReplicas": 8 }}'
 
-9. Confirm how many pods are now running.
+9. Confirm how many pods are now running, and check the status of the autoscaler
 
+        kubectl get hpa -n testing
         kubectl get po -n testing
 
-You should now see 8 replicas running.
+You should see your autoscaler now has a MAXPODS value of 8 and there should be 8 replicas of php-apache running.
 
 10. Stop generating load by returning to the PowerShell window where the load generator is running and pressing Ctl-C.
 
