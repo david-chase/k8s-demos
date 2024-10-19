@@ -13,7 +13,7 @@ The scenario below includes instructions on how to verify that metrics server is
 ## Scenario
 1. Check if metrics-server is installed
 
-    kubectl get po --all-namespaces | Select-String "metrics-server"
+        kubectl get po --all-namespaces | Select-String "metrics-server"
 
 If nothing is returned, you must deploy the metrics server before HPA will work.
 
