@@ -1,0 +1,8 @@
+# kubectl create -k .
+
+resources:
+- configmap.yaml
+- serviceaccount.yaml
+- clusterrole.yaml
+- clusterrolebinding.yaml
+- scheduler.yaml

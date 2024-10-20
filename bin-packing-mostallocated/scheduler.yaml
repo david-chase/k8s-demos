@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-scheduler
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: my-scheduler
+  template:
+    metadata:
+      labels:
+        component: scheduler
+        name: my-scheduler
+        tier: control-plane
+    spec:
+      containers:
+      - command:
+        - /usr/local/bin/kube-scheduler
+        - --leader-elect=false
+        - --config=/etc/kubernetes/scheduler-config.yaml
+        - -v=5
+        env: []
+        image: registry.k8s.io/kube-scheduler:v1.25.12
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 200m
+            memory: 128Mi
+          limits:
+            memory: 128Mi
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 10259
+            scheme: HTTPS
+        name: my-scheduler
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 10259
+            scheme: HTTPS
+        volumeMounts:
+        - mountPath: /etc/kubernetes/scheduler-config.yaml
+          name: my-scheduler-config
+          subPath: scheduler-config.yaml
+      serviceAccountName: my-scheduler
+      volumes:
+      - configMap:
+          name: my-scheduler-config
+        name: my-scheduler-config
