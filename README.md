@@ -24,7 +24,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 |---|---|
 | eksctl-create-cluster-with-autoscaler | Build an EKS cluster using EKSCTL with cluster autoscaler enabled. |
 | eksctl-create-cluster-with-karpenter | Build an EKS cluster using EKSCTL with Karpenter deployed as the node autoscaler. |
-| eksctl-create-cluster-karpenter-fargate | Build an EKS cluster where Karpenter runs in a Fargate profile.  COMING SOON |
+| eksctl-create-cluster-karpenter-on-fargate | Build an EKS cluster where Karpenter runs on Fargate.  COMING SOON |
 | aks-create-cluster-with-autoscaler | Build an AKS cluster using the Azure CLI tool with cluster autoscaler enabled. |
 | gke-create-cluster-with-autoscaler | Build a GKE cluster using the Google CLI tool with cluster autoscaler enabled. |
 
@@ -70,4 +70,4 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 
 | Folder | Description
 |---|---|
-| fargate-profile | Create a FarGate profile for EKS that runs all workloads for a particular namespace on FarGate serverless nodes. |
+| fargate-profile | Create a Fargate profile for EKS that runs all workloads for a particular namespace on Fargate serverless nodes. |
