@@ -3,7 +3,7 @@
 ## Introduction
 Pod disruption budgets are an invaluable tool for high-availability Kubernetes implementations.  They prevent workloads from being interrupted by routine maintenance by ensuring some pods in your workload are always running.  
 
-For example, imagine you have a critical workload that consists of 9 pods.  You could define a PDB that ensures at least 3 pods are running at all time, regardless of planned maintenance.  If you restart this workload with the PDB in place, Kubernetes will restart 6 pods right away, but leave 3 running to satisfy the pod disruption budget.  As the restarted pods come back online, the remaining 3 pods will be restarted.
+For example, imagine you have a critical workload that consists of 9 pods.  You could define a PDB that ensures at least 3 pods are running at all times, regardless of planned maintenance.  If you restart this workload with the PDB in place, Kubernetes will restart 6 pods right away, but leave 3 running to satisfy the pod disruption budget.  As the restarted pods come back online, the remaining 3 pods will be restarted.
 
 In this scenario we will simulate a critical workload where every replica is running on a single node.  An admin inadvertently attempts to bring this node offline for maintenance.  We'll see what happens both with, and without, a PDB in place.
 
@@ -19,7 +19,7 @@ If you are using cluster autoscaler, disable it by running
 
 If you have multiple nodes, run the following on every node but one
 
-    taint node <node name> nodepaused:NoExecute
+    kubectl taint node <node name> nodepaused:NoExecute
 
 2. Now deploy your workload:
 
