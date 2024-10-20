@@ -51,7 +51,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 | Folder | Description
 |---|---|
 | pod-disruption-budgets | Prevent critical workloads from being impacted by routine maintenance with Pod Disruption Budgets. |
-| pod-topology-spread-constraints | Support High Availability Kubernetes implementations by ensuring pods are evenly distributed across availability zones. **COMING SOON** |
+| pod-topology-spread-constraints | Support High Availability Kubernetes implementations by ensuring pods are evenly distributed across availability zones. |
 
 ### Observability
 
