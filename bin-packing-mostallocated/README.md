@@ -57,7 +57,7 @@ You'll notice the default is to spread the pods evenly across the available node
 
 The important thing to note is that our node scoring strategy is set to "MostAllocated" and we're weighting CPU and Memory resources equally.
 
-6. Open scheduler.yaml in a text editor.  While it's not vital to understand everything being done in this manifest,the key takeaway is that we're defining a custom scheduler named "my-scheduler".  Since this is not the default scheduler, it will only be used by pods that specify it in their manifests.  We'll show that soon.
+6. Open scheduler.yaml in a text editor.  While it's not vital to understand everything being done in this manifest, the key takeaway is that we're defining a custom scheduler named "my-scheduler".  Since this is not the default scheduler, it will only be used by pods that specify it in their manifests.  We'll show that soon.
 
 7. Deploy the custom scheduler
 
