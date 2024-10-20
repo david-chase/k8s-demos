@@ -1,0 +1,11 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: pdb-demo
+  namespace: testing
+spec:
+  # Specify that at least 3 replicas must always be running
+  minAvailable: 3
+  selector:
+    matchLabels:
+      app: demo
