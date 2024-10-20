@@ -31,7 +31,7 @@ Before we begin, let's see how pods in a deployment are distributed across nodes
 
         ./Get-Pods-By-Node.ps1 -n testing
 
-You'll notice the default is to spread the pods evenly across the available nodes.  If you have 3 nodes and 9 replicas, 3 replicas will be placed on each node.  Leave the workload you just deployed running as we move on to the next part of the scenario.
+You'll notice the default is to spread the pods evenly across the available nodes.  If you have 3 nodes and 9 replicas, 3 replicas will be placed on each node.  
 
 3. Now that we've seen how the default node scoring algorithm -- LeastAllocated -- works, let's remove this workload and deploy a custom scheduler that uses the MostAllocated algorithm.  Delete this workload
 
@@ -83,5 +83,7 @@ This time you should see all the pods have been placed on a single node.  This i
 
 11. When ready, let's return our cluster to its previous state.
 
-        kubectl 
+        kubectl delete -f .\php-apache-customscheduler.yaml
+        kubectl delete -k .
+
 This concludes the scenario.
