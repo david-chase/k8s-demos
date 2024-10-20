@@ -13,7 +13,7 @@ Assigning certain pods to run on certain nodes is part of any complex Kubernetes
 1. A functional Kubernetes cluster with at least 3 nodes
 2. PowerShell Core
 
-You can use any of the scenarios in this repo to create your 3-node K8s cluster simply by editing config.ini and setting "minsize" to 3.
+You can use any of the cluster creation scenarios in this repo to create your 3-node K8s cluster simply by editing config.ini and setting "minsize" to 3.
 
 ## Scenario
 ### Before we begin
