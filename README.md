@@ -24,7 +24,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 |---|---|
 | eksctl-create-cluster-with-autoscaler | Build an EKS cluster using EKSCTL with cluster autoscaler enabled. |
 | eksctl-create-cluster-with-karpenter | Build an EKS cluster using EKSCTL with Karpenter deployed as the node autoscaler. |
-| eksctl-create-cluster-karpenter-on-fargate | Build an EKS cluster where Karpenter runs on Fargate.  COMING SOON |
+| eksctl-create-cluster-karpenter-on-fargate | Build an EKS cluster where Karpenter runs on Fargate.  **COMING SOON** |
 | aks-create-cluster-with-autoscaler | Build an AKS cluster using the Azure CLI tool with cluster autoscaler enabled. |
 | gke-create-cluster-with-autoscaler | Build a GKE cluster using the Google CLI tool with cluster autoscaler enabled. |
 
@@ -35,7 +35,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 | assigning-pods-to-nodes | Assign pods to specific nodes by hard coding, nodeSelector, or node affinity. |
 | taints-and-tolerations | Drive pods away from certain nodes using taints.  Use taints, tolerations, and node affinity together for powerful, fine-grained control of pod placement on nodes. |
 | bin-packing-mostallocated | Use bin packing in EKS, AKS, and GKE by deploying a custom scheduler with MostAllocated node scoring algorithm enabled. |
-| pod-affinity | Ensure related workloads get deployed together on the same nodes using pod affinity.  COMING SOON |
+| pod-affinity | Ensure related workloads get deployed together on the same nodes using pod affinity.  **COMING SOON** |
 
 
 ### Pod Autoscaling
@@ -43,15 +43,15 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 | Folder | Description
 |---|---|
 | horizontal-pod-autoscaler | Scale workloads by adding replicas using Horizontal Pod Autoscaler. |
-| vertical-pod-autoscaler | Scale workloads by allocating more resources to them using Vertical Pod Autoscaler.  COMING SOON |
-| keda-demo | Scale workloads based on application metrics using Kubernetes Event Driven Autoscaler (KEDA). COMING SOON |
+| vertical-pod-autoscaler | Scale workloads by allocating more resources to them using Vertical Pod Autoscaler.  **COMING SOON** |
+| keda-demo | Scale workloads based on application metrics using Kubernetes Event Driven Autoscaler (KEDA). **COMING SOON** |
 
 ### High Availability
 
 | Folder | Description
 |---|---|
 | pod-disruption-budgets | Prevent critical workloads from being impacted by routine maintenance with Pod Disruption Budgets. |
-| pod-topology-spread-constraints | Support High Availability Kubernetes implementations by ensuring pods are evenly distributed across availability zones. COMING SOON |
+| pod-topology-spread-constraints | Support High Availability Kubernetes implementations by ensuring pods are evenly distributed across availability zones. **COMING SOON** |
 
 ### Observability
 
@@ -64,7 +64,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 | Folder | Description
 |---|---|
 | gatekeeper-policy | Use Gatekeeper and OPA to require all pods to have Requests and Limits defined. |
-| kyverno-policy | Deploy and use Kyverno to enforce policy in your cluster.  COMING SOON |
+| kyverno-policy | Deploy and use Kyverno to enforce policy in your cluster.  **COMING SOON** |
 
 ### Miscellaneous
 
