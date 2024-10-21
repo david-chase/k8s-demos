@@ -13,20 +13,20 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 | Folder | Description
 |---|---|
 | [install-aws-cli](https://github.com/dbc13543/k8s-demos/tree/master/install-aws-cli) | Install and configure the AWS CLI tool.  This is required for any scenarios specific to EKS. |
-| install-azure-cli | Install and configure the Azure CLI tool.  This is required to create and manage an AKS cluster. |
-| install-gcloud-cli | Install and configure the Google CLI tool.  This is required to create and manage a GKE cluster. |
-| install-eksctl | Install the EKSCTL utility.  This is used to create and manage an EKS cluster. |
-| export-kubeconfig | Recreate your kubeconfig file if it becomes corrupted or is pointing to the wrong cluster.  kubeconfig is used by kubectl to connect to your cluster. |
+| [install-azure-cli](https://github.com/dbc13543/k8s-demos/tree/master/install-azure-cli) | Install and configure the Azure CLI tool.  This is required to create and manage an AKS cluster. |
+| [install-gcloud-cli](https://github.com/dbc13543/k8s-demos/tree/master/install-gcloud-cli) | Install and configure the Google CLI tool.  This is required to create and manage a GKE cluster. |
+| [install-eksctl](https://github.com/dbc13543/k8s-demos/tree/master/install-eksctl) | Install the EKSCTL utility.  This is used to create and manage an EKS cluster. |
+| [export-kubeconfig](https://github.com/dbc13543/k8s-demos/tree/master/export-kubeconfig) | Recreate your kubeconfig file if it becomes corrupted or is pointing to the wrong cluster.  kubeconfig is used by kubectl to connect to your cluster. |
 
 ### Building a Cluster
 
 | Folder | Description
 |---|---|
-| eksctl-create-cluster-with-autoscaler | Build an EKS cluster using EKSCTL with cluster autoscaler enabled. |
-| eksctl-create-cluster-with-karpenter | Build an EKS cluster using EKSCTL with Karpenter deployed as the node autoscaler. |
+| [eksctl-create-cluster-with-autoscaler](https://github.com/dbc13543/k8s-demos/tree/master/eksctl-create-cluster-with-autoscaler) | Build an EKS cluster using EKSCTL with cluster autoscaler enabled. |
+| [eksctl-create-cluster-with-karpenter]https://github.com/dbc13543/k8s-demos/tree/master/eksctl-create-cluster-with-karpenter | Build an EKS cluster using EKSCTL with Karpenter deployed as the node autoscaler. |
 | eksctl-create-cluster-karpenter-on-fargate | Build an EKS cluster where Karpenter runs on Fargate.  **COMING SOON** |
-| aks-create-cluster-with-autoscaler | Build an AKS cluster using the Azure CLI tool with cluster autoscaler enabled. |
-| gke-create-cluster-with-autoscaler | Build a GKE cluster using the Google CLI tool with cluster autoscaler enabled. |
+| [aks-create-cluster-with-autoscaler](https://github.com/dbc13543/k8s-demos/tree/master/aks-create-cluster-with-autoscaler) | Build an AKS cluster using the Azure CLI tool with cluster autoscaler enabled. |
+| [gke-create-cluster-with-autoscaler](https://github.com/dbc13543/k8s-demos/tree/master/gke-create-cluster-with-autoscaler) | Build a GKE cluster using the Google CLI tool with cluster autoscaler enabled. |
 
 ### Pod Placement
 
