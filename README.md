@@ -12,7 +12,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 
 | Folder | Description
 |---|---|
-| install-aws-cli | Install and configure the AWS CLI tool.  This is required for any scenarios specific to EKS. |
+| [install-aws-cli](https://github.com/dbc13543/k8s-demos/tree/master/install-aws-cli) | Install and configure the AWS CLI tool.  This is required for any scenarios specific to EKS. |
 | install-azure-cli | Install and configure the Azure CLI tool.  This is required to create and manage an AKS cluster. |
 | install-gcloud-cli | Install and configure the Google CLI tool.  This is required to create and manage a GKE cluster. |
 | install-eksctl | Install the EKSCTL utility.  This is used to create and manage an EKS cluster. |
