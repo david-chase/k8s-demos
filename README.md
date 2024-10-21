@@ -32,9 +32,9 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 
 | Folder | Description
 |---|---|
-| assigning-pods-to-nodes | Assign pods to specific nodes by hard coding, nodeSelector, or node affinity. |
-| taints-and-tolerations | Drive pods away from certain nodes using taints.  Use taints, tolerations, and node affinity together for powerful, fine-grained control of pod placement on nodes. |
-| bin-packing-mostallocated | Use bin packing in EKS, AKS, and GKE by deploying a custom scheduler with MostAllocated node scoring algorithm enabled. |
+| [assigning-pods-to-nodes](https://github.com/dbc13543/k8s-demos/tree/master/assigning-pods-to-nodes) | Assign pods to specific nodes by hard coding, nodeSelector, or node affinity. |
+| [taints-and-tolerations](https://github.com/dbc13543/k8s-demos/tree/master/taints-and-tolerations) | Drive pods away from certain nodes using taints.  Use taints, tolerations, and node affinity together for powerful, fine-grained control of pod placement on nodes. |
+| [bin-packing-mostallocated](https://github.com/dbc13543/k8s-demos/tree/master/bin-packing-mostallocated) | Use bin packing in EKS, AKS, and GKE by deploying a custom scheduler with MostAllocated node scoring algorithm enabled. |
 | pod-affinity | Ensure related workloads get deployed together on the same nodes using pod affinity.  **COMING SOON** |
 
 
@@ -42,7 +42,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 
 | Folder | Description
 |---|---|
-| horizontal-pod-autoscaler | Scale workloads by adding replicas using Horizontal Pod Autoscaler. |
+| [horizontal-pod-autoscaler](https://github.com/dbc13543/k8s-demos/tree/master/horizontal-pod-autoscaler) | Scale workloads by adding replicas using Horizontal Pod Autoscaler. |
 | vertical-pod-autoscaler | Scale workloads by allocating more resources to them using Vertical Pod Autoscaler.  **COMING SOON** |
 | keda-demo | Scale workloads based on application metrics using Kubernetes Event Driven Autoscaler (KEDA). **COMING SOON** |
 
@@ -50,24 +50,24 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 
 | Folder | Description
 |---|---|
-| pod-disruption-budgets | Prevent critical workloads from being impacted by routine maintenance with Pod Disruption Budgets. |
-| pod-topology-spread-constraints | Support High Availability Kubernetes implementations by ensuring pods are evenly distributed across availability zones. |
+| [pod-disruption-budgets](https://github.com/dbc13543/k8s-demos/tree/master/pod-disruption-budgets) | Prevent critical workloads from being impacted by routine maintenance with Pod Disruption Budgets. |
+| [pod-topology-spread-constraints](https://github.com/dbc13543/k8s-demos/tree/master/pod-topology-spread-constraints) | Support High Availability Kubernetes implementations by ensuring pods are evenly distributed across availability zones. |
 
 ### Observability
 
 | Folder | Description
 |---|---|
-| install-kube-prometheus-stack | Install kube-state-metrics, node exporter, Prometheus, Grafana, and several Grafana dashboard using the kube-prometheus-stack Helm chart |
+| [install-kube-prometheus-stack](https://github.com/dbc13543/k8s-demos/tree/master/install-kube-prometheus-stack) | Install kube-state-metrics, node exporter, Prometheus, Grafana, and several Grafana dashboard using the kube-prometheus-stack Helm chart |
 
 ### Policy
 
 | Folder | Description
 |---|---|
-| gatekeeper-policy | Use Gatekeeper and OPA to require all pods to have Requests and Limits defined. |
+| [gatekeeper-policy](https://github.com/dbc13543/k8s-demos/tree/master/gatekeeper-policy) | Use Gatekeeper and OPA to require all pods to have Requests and Limits defined. |
 | kyverno-policy | Deploy and use Kyverno to enforce policy in your cluster.  **COMING SOON** |
 
 ### Miscellaneous
 
 | Folder | Description
 |---|---|
-| fargate-profile | Create a Fargate profile for EKS that runs all workloads for a particular namespace on Fargate serverless nodes. |
+| [fargate-profile](https://github.com/dbc13543/k8s-demos/tree/master/fargate-profile) | Create a Fargate profile for EKS that runs all workloads for a particular namespace on Fargate serverless nodes. |
