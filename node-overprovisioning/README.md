@@ -1,9 +1,9 @@
 # Node Overprovisioning
 
 ## Introduction
-For mission critical environments where highly responsive workloads are required, the simple act of scaling out a node can cause excessive delays as pods wait for a new node to launch.  To avoid this scenario we do node overprovisioning.
+For mission critical environments where highly responsive workloads are required, the simple act of scaling out a node can cause excessive delays as pods wait for a new node to launch.  The solution to this is node overprovisioning.
 
-This entails ensuring there is always one more node provisioned than we actually need.  We do this by placing a large, low priority "placeholder" pod in the cluster that is the size of one node.  When a new production workload comes online and finds there isn't sufficient capacity in the cluster to place the workload, the Kubernetes scheduler evicts the low-priority placeholder pod immediately and schedules the production pod on the node it was running on, meaning your production workload is provisioned nearly instantly.  The placeholder pod now has nowhere to run and the autoscaler scales out a new node for it to run on.  The placeholder pod suffers the latency of scaling out a new node, not your production workload.
+This entails ensuring there is always one more node running than we actually need.  We do this by placing a large, low priority "placeholder" deployment in the cluster that is the size of one node.  When a new production workload comes online and the Kubernetes scheduler finds there isn't sufficient capacity in the cluster to place the workload, it evicts the low-priority placeholder deployment and instead schedules the production pod in its place.  This means your production workload is provisioned nearly instantly.  The placeholder deployment now has nowhere to run and the autoscaler scales out a new node for it.  The placeholder pod suffers the latency of scaling out a new node, not your production workload.
 
 This scenario is based on information in this article:
 
@@ -41,8 +41,8 @@ Since there will be 5 pods in our placeholder deployment, divide the allocatable
 3. Edit placeholder.yaml to set the CPU requests to this value:
 
         resources:
-                requests:
-                cpu: 386m
+          requests:
+            cpu: 386m
 
 This means that at all times this deployment will be requesting one whole node in capacity.
 
@@ -60,7 +60,7 @@ Wait until all pods are in a Ready state.  This may take some time as a node wil
 
         kubectl get no
 
-Notice that we now have two nodes running.  One where any existing pods and workloads are running, and a second placeholder node to handle any bursts in demand.
+Notice that we now have two nodes running.  One hosting any existing pods and workloads, and a second placeholder node to handle any bursts in demand.
 
 6. Simulate a new production workload coming online:
 
