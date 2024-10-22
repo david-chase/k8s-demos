@@ -9,7 +9,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 ## What's new
 | Folder | Description
 |---|---|
-| [node-overprovisioning](https://github.com/dbc13543/k8s-demos/tree/master/node-overprovisioning) | Prevent your production workloads from suffering latency when adding new nodes by provisioning a hot "spare". |
+| [node-overprovisioning](https://github.com/dbc13543/k8s-demos/tree/master/node-overprovisioning) | Prevent your production workloads from suffering latency when adding new nodes by provisioning a hot spare. |
 
 ## List of scenarios by function
 
@@ -57,7 +57,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 |---|---|
 | [pod-disruption-budgets](https://github.com/dbc13543/k8s-demos/tree/master/pod-disruption-budgets) | Prevent critical workloads from being impacted by routine maintenance with Pod Disruption Budgets. |
 | [pod-topology-spread-constraints](https://github.com/dbc13543/k8s-demos/tree/master/pod-topology-spread-constraints) | Support High Availability Kubernetes implementations by ensuring pods are evenly distributed across availability zones. |
-| [node-overprovisioning](https://github.com/dbc13543/k8s-demos/tree/master/node-overprovisioning) | Prevent your production workloads from suffering latency when adding new nodes by provisioning a hot "spare". |
+| [node-overprovisioning](https://github.com/dbc13543/k8s-demos/tree/master/node-overprovisioning) | Prevent your production workloads from suffering latency when adding new nodes by provisioning a hot spare. |
 
 ### Observability
 
