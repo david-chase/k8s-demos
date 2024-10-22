@@ -6,12 +6,12 @@ This repo contains a number of simple scenarios that help demonstrate Kubernetes
 ## Prerequisites
 All scenarios in this repo require PowerShell Core, as this allows you to run them on either Windows or Linux.
 
-## List of scenarios by function
-
-### What's new ###
+## What's new
 | Folder | Description
 |---|---|
 | [node-overprovisioning](https://github.com/dbc13543/k8s-demos/tree/master/node-overprovisioning) | Prevent your production workloads from suffering latency when adding new nodes by provisioning a hot "spare". |
+
+## List of scenarios by function
 
 ### Getting Started
 
