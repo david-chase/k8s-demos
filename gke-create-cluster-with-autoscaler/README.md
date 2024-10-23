@@ -8,7 +8,7 @@ This scenario will build a GKE cluster with cluster autoscaler support.
 2. PowerShell Core
 
 For instructions on installing and configuring the Google Cloud CLI see:
-https://github.com/dbc13543/k8s-demos/tree/master/install-gcloud-cli
+https://github.com/david-chase/k8s-demos/tree/master/install-gcloud-cli
 
 ## Scenario
 

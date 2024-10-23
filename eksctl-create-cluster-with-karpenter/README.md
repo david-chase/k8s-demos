@@ -13,10 +13,10 @@ This scenario is based on the "Getting Started With Karpenter" tutorial at https
 3. PowerShell Core
 
 For instructions on installing and configuring the AWS CLI see:
-https://github.com/dbc13543/k8s-demos/tree/master/install-aws-cli
+https://github.com/david-chase/k8s-demos/tree/master/install-aws-cli
 
 For instructions on installing eksctl see:
-https://github.com/dbc13543/k8s-demos/tree/master/install-eksctl
+https://github.com/david-chase/k8s-demos/tree/master/install-eksctl
 
 ## Third-party Tools
 This scenario includes a copy of the envsubst tool which can be found here:

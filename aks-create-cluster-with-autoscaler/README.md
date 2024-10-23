@@ -8,7 +8,7 @@ This scenario will build an AKS cluster using the Azure CLI utility and deploy c
 2. PowerShell Core
 
 For instructions on installing and configuring the Azure CLI see:
-https://github.com/dbc13543/k8s-demos/tree/master/install-azure-cli
+https://github.com/david-chase/k8s-demos/tree/master/install-azure-cli
 
 ## Scenario
 
