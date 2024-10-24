@@ -59,7 +59,7 @@ The important thing to note is that our node scoring strategy is set to "MostAll
 
 6. Open scheduler.yaml in a text editor.  While it's not vital to understand everything being done in this manifest, the key takeaway is that we're defining a custom scheduler named "my-scheduler".  Since this is not the default scheduler, it will only be used by pods that specify it in their manifests.  We'll demonstrate that soon.
 
-7. Deploy the custom scheduler
+7. Deploy the custom scheduler, using the kustomization.yaml file in the current folder
 
         kubectl apply -k .
 
