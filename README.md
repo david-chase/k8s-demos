@@ -78,3 +78,4 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 | Folder | Description
 |---|---|
 | [fargate-profile](https://github.com/david-chase/k8s-demos/tree/master/fargate-profile) | Create a Fargate profile for EKS that runs all workloads for a particular namespace on Fargate serverless nodes. |
+| [terraform](https://github.com/david-chase/k8s-demos/tree/master/terraform) | Deploy native Kubernetes resources using Terraform. |
