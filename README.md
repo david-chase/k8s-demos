@@ -11,6 +11,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 |---|---|
 | [node-overprovisioning](https://github.com/david-chase/k8s-demos/tree/master/node-overprovisioning) | Prevent your production workloads from suffering latency when adding new nodes by provisioning a hot spare. |
 | [deploy-k8s-resources-using-terraform](https://github.com/david-chase/k8s-demos/tree/master/deploy-k8s-resources-using-terraform) | Deploy native Kubernetes resources using Terraform. |
+| [eksctl-create-cluster-karpenter-on-fargate](https://github.com/david-chase/k8s-demos/tree/master/eksctl-create-cluster-karpenter-on-fargate) | Build an EKS cluster where Karpenter runs on Fargate. |
 
 ## List of scenarios by function
 
@@ -30,7 +31,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 |---|---|
 | [eksctl-create-cluster-with-autoscaler](https://github.com/david-chase/k8s-demos/tree/master/eksctl-create-cluster-with-autoscaler) | Build an EKS cluster using EKSCTL with cluster autoscaler enabled. |
 | [eksctl-create-cluster-with-karpenter](https://github.com/david-chase/k8s-demos/tree/master/eksctl-create-cluster-with-karpenter) | Build an EKS cluster using EKSCTL with Karpenter deployed as the node autoscaler. |
-| eksctl-create-cluster-karpenter-on-fargate | Build an EKS cluster where Karpenter runs on Fargate.  **COMING SOON** |
+| [eksctl-create-cluster-karpenter-on-fargate](https://github.com/david-chase/k8s-demos/tree/master/eksctl-create-cluster-karpenter-on-fargate) | Build an EKS cluster where Karpenter runs on Fargate. |
 | [aks-create-cluster-with-autoscaler](https://github.com/david-chase/k8s-demos/tree/master/aks-create-cluster-with-autoscaler) | Build an AKS cluster using the Azure CLI tool with cluster autoscaler enabled. |
 | [gke-create-cluster-with-autoscaler](https://github.com/david-chase/k8s-demos/tree/master/gke-create-cluster-with-autoscaler) | Build a GKE cluster using the Google CLI tool with cluster autoscaler enabled. |
 
@@ -42,7 +43,6 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 | [taints-and-tolerations](https://github.com/david-chase/k8s-demos/tree/master/taints-and-tolerations) | Drive pods away from certain nodes using taints.  Use taints, tolerations, and node affinity together for powerful, fine-grained control of pod placement on nodes. |
 | [bin-packing-mostallocated](https://github.com/david-chase/k8s-demos/tree/master/bin-packing-mostallocated) | Use bin packing in EKS, AKS, and GKE by deploying a custom scheduler with MostAllocated node scoring algorithm enabled. |
 | pod-affinity | Ensure related workloads get deployed together on the same nodes using pod affinity.  **COMING SOON** |
-
 
 ### Pod Autoscaling
 
