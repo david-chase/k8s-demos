@@ -10,7 +10,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 | Folder | Description
 |---|---|
 | [node-overprovisioning](https://github.com/david-chase/k8s-demos/tree/master/node-overprovisioning) | Prevent your production workloads from suffering latency when adding new nodes by provisioning a hot spare. |
-| [terraform]((https://github.com/david-chase/k8s-demos/tree/master/terraform) | Deploy native Kubernetes resources using Terraform. |
+| [terraform](https://github.com/david-chase/k8s-demos/tree/master/terraform) | Deploy native Kubernetes resources using Terraform. |
 
 ## List of scenarios by function
 
