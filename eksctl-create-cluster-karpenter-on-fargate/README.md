@@ -52,11 +52,11 @@ This will show that Karpenter, and some parts of the Kubernetes control plane ar
 
         kubectl apply -f php-apache.yaml
 
-Wait until the pod is in Running state.  You can check this by running
+Wait until the pod is in Ready state.  You can check this by running
 
     kubectl get po -n testing -w
 
-The -w switch tells kubectl to keep running, and show you updates as they happen.  Once you see a status message showing the pod is in Running state, hit Ctl-C to return to the command prompt.
+The -w switch tells kubectl to keep running, and show you updates as they happen.  Once you see a status message showing the pod is in Ready state, hit Ctl-C to return to the command prompt.
 
 6. Check how and where your deployment is running by typing 
 
