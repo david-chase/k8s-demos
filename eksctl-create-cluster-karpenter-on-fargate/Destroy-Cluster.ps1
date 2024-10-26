@@ -1,6 +1,6 @@
 cls
 Write-Host ""
-Write-Host ::: Destroy EKS Cluster With Karpenter v1 ::: -ForegroundColor Cyan
+Write-Host ::: Destroy EKS Cluster With Karpenter on Fargate v1 ::: -ForegroundColor Cyan
 Write-Host ""
 
 # Read in the config file
@@ -44,6 +44,8 @@ Start-Process "aws" -ArgumentList $sParams4 -Wait -NoNewWindow
 Write-Host `nDeleting cluster -ForegroundColor Cyan
 Write-Host "eksctl delete cluster --name $env:CLUSTER_NAME" -ForegroundColor Green
 eksctl delete cluster --name $env:CLUSTER_NAME
+
+# aws eks describe-cluster --name $env:CLUSTER_NAME --query "cluster.resourcesVpcConfig.vpcId" --output text
 
 Write-Host "`nPausing for 10 minutes to allow the cluster to deprovision" -ForegroundColor Cyan
 Start-Sleep -Seconds 500
