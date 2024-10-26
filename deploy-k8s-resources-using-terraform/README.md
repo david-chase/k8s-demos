@@ -52,7 +52,7 @@ You'll see that it simply tells Terraform that we'll be using a plug-in provider
 
 You'll see there are now 3 replicas of our php-apache pod running.
 
-7. When you're done, roll back youur changes
+7. When you're done, roll back your changes
 
         terraform apply -destroy -auto-approve
 
