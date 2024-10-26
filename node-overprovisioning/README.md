@@ -3,7 +3,7 @@
 ## Introduction
 For mission critical environments where highly responsive workloads are required, the simple act of scaling out a node can cause excessive delays as pods wait for a new node to launch.  The solution to this is node overprovisioning.
 
-This entails ensuring there is always one more node running than we actually need.  We do this by placing a large, low priority "placeholder" deployment in the cluster that is the size of one node.  When a new production workload comes online and the Kubernetes scheduler finds there isn't sufficient capacity in the cluster to place the workload, it evicts the low-priority placeholder deployment and instead schedules the production pod in its place.  This means your production workload is provisioned nearly instantly.  The placeholder deployment now has nowhere to run and the autoscaler scales out a new node for it.  The placeholder pod suffers the latency of scaling out a new node, not your production workload.
+This entails ensuring there is always one more node running than we actually need.  We do this by placing a large, low priority "placeholder" deployment in the cluster that is the size of one node.  When a new production workload comes online and the Kubernetes scheduler finds there isn't sufficient capacity in the cluster to place the workload, it evicts the low-priority placeholder deployment and instead schedules the production pod in its place.  This means your production workload is provisioned nearly instantly.  The placeholder deployment now has nowhere to run and the autoscaler scales out a new node for it.  The placeholder deployment suffers the latency of scaling out a new node, not your production workload.
 
 This scenario is based on information in this article:
 
