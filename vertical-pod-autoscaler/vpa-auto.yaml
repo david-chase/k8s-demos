@@ -1,0 +1,21 @@
+apiVersion: "autoscaling.k8s.io/v1"
+kind: VerticalPodAutoscaler
+metadata:
+  name: php-apache-vpa
+  namespace: testing
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: php-apache
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+      - containerName: '*'
+        minAllowed:
+          cpu: 10m
+        maxAllowed:
+          cpu: 2000m  #maximum vpa will be allocating this many cpus even if demand is higher.
+          memory: 2000Mi
+        controlledResources: ["cpu", "memory"]
