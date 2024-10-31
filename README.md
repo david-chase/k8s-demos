@@ -12,6 +12,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 | [node-overprovisioning](https://github.com/david-chase/k8s-demos/tree/master/node-overprovisioning) | Prevent your production workloads from suffering latency when adding new nodes by provisioning a hot spare. |
 | [deploy-k8s-resources-using-terraform](https://github.com/david-chase/k8s-demos/tree/master/deploy-k8s-resources-using-terraform) | Deploy native Kubernetes resources using Terraform. |
 | [eksctl-create-cluster-karpenter-on-fargate](https://github.com/david-chase/k8s-demos/tree/master/eksctl-create-cluster-karpenter-on-fargate) | Build an EKS cluster where Karpenter runs on Fargate. |
+| [vertical-pod-autoscaler](https://github.com/david-chase/k8s-demos/tree/master/vertical-pod-autoscaler) | Scale workloads by allocating more resources to them using Vertical Pod Autoscaler. |
 
 ## List of scenarios by function
 
@@ -49,7 +50,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 | Folder | Description
 |---|---|
 | [horizontal-pod-autoscaler](https://github.com/david-chase/k8s-demos/tree/master/horizontal-pod-autoscaler) | Scale workloads by adding replicas using Horizontal Pod Autoscaler. |
-| vertical-pod-autoscaler | Scale workloads by allocating more resources to them using Vertical Pod Autoscaler.  **COMING SOON** |
+| [vertical-pod-autoscaler](https://github.com/david-chase/k8s-demos/tree/master/vertical-pod-autoscaler) | Scale workloads by allocating more resources to them using Vertical Pod Autoscaler. |
 | keda-demo | Scale workloads based on application metrics using Kubernetes Event Driven Autoscaler (KEDA). **COMING SOON** |
 
 ### High Availability
