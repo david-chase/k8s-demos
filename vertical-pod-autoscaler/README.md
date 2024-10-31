@@ -4,7 +4,7 @@
 This simple scenario demonstrates how to deploy and use Vertical Pod Autoscaler, and how it scales up a deployment when under load.
 
 ## Prerequisites
-1. Any working Kubernetes cluster with metrics server installed
+1. Any working Kubernetes cluster with metrics server running.
 
 The scenario below includes instructions on how to verify that metrics server is running, and if not, how to deploy it.
 
@@ -13,7 +13,7 @@ The scenario below includes instructions on how to verify that metrics server is
 
         kubectl get po --all-namespaces | Select-String "metrics-server"
 
-If nothing is returned, you must deploy the metrics server before HPA will work.
+If nothing is returned, you must deploy the metrics server before VPA will work.
 
     kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.7.2/components.yaml
 
@@ -21,73 +21,87 @@ Run the previous command again to confirm metrics-server is now running.
 
 2. Install Vertical Pod Autoscaler
 
-	helm upgrade --install vertical-pod-autoscaler oci://ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler --version 1.7.1
+        helm upgrade --install vertical-pod-autoscaler oci://ghcr.io/stevehipwell/helm-charts/vertical-pod-autoscaler --version 1.7.1 -n kube-system
 
-3. Deploy a sample workload
+3. Verify VPA is running
+
+        kubectl get po -n kube-system | Select-String vertical
+
+You should see three pods running:
+
+| Pod | Description |
+|---|---|
+| vertical-pod-autoscaler-admission-controller | This pod sizes workloads as they're created |
+| vertical-pod-autoscaler-recommender | This pod generates sizing recommendations for a workload |
+| vertical-pod-autoscaler-updater | This pod updates and restarts pods |
+
+4. Deploy a sample workload
 
         kubectl apply -f php-apache.yaml
 
-4. Check the resources being used by your deployment
-
-	./Get-Pod-Resources.ps1 -n testing
-
-You'll see there is a single replica running with 100m CPU requests and 100m memory requests.  No limits have been specified.
-
-5. Generate some load on your application.  Open a *new* PowerShell window and run
-
-        .\Generate-Load.ps1
-
-6. It will start generating load on your web server and return the results on the screen.  This should look like a continuous stream of "OK!" messages.
-
-Return to your previous PowerShell window and check your resource usage
+5. Check the resources being used by your deployment
 
         ./Get-Pod-Resources.ps1 -n testing
 
-You should see one pod running that represents the load generator script as well as the single pod for your php-apache deployment.  You'll observe that even under load, the resource requests for your workload haven't changed.  
+You'll see there is a single replica of php-apache running with CPU requests of 50m and Memory requests of 100Mi.
 
-5. Let's deploy Vertical Pod Autoscaler.
+6. Generate some load on your application.  Open a *new* PowerShell window and run
 
-        kubectl apply -f hpa.yaml
+        .\Generate-Load.ps1
 
-Wait 20-30 seconds before proceeding to the next step.
+7. It will start generating load on your web server and return the results on the screen.  This should look like a continuous stream of "OK!" messages.
 
-6. Confirm how many pods are now running.
+8. Deploy Vertical Pod Autoscaler with Update Mode set to "Off"
 
-        kubectl get po -n testing
+        kubectl apply -f vpa.yaml
 
-You should see multiple php-apache pods running now, up to a maximum of 5.  This is because we set this as the maximum number of replicas in our hpa.yaml manifest.
+9. Wait about a minute, then we'll check if the VPA recommender is generating sizing recommendations
 
-7. Check the status of the autoscaler
+        kubectl describe vpa php-apache-vpa -n testing
 
-        kubectl get hpa -n testing
+You should see something like this at the end of the output, confirming that sizing recommendations are being generated:
 
-This will show you the status and properties of the autoscaler you just created.
+      Recommendation:
+        Container Recommendations:  
+          Container Name:  php-apache
+          Lower Bound:
+            Cpu:     178m
+            Memory:  262144k
+          Target:
+            Cpu:     920m
+            Memory:  262144k
+          Uncapped Target:
+            Cpu:     920m
+            Memory:  262144k
+          Upper Bound:
+            Cpu:     2
+            Memory:  2000Mi
 
-8. Let's patch the autoscaler definition in place to increase the max number of replicas to 8
+10. Now check the requests and limits on our pod:
 
-        kubectl patch HorizontalPodAutoscaler demo -n testing -p '{"spec": { "maxReplicas": 8 }}'
+        ./Get-Pod-Resources.ps1 -n testing
 
-9. Confirm how many pods are now running, and check the status of the autoscaler
+Nothing has changed because we still have Update Mode set to "Off".  
 
-        kubectl get hpa -n testing
-        kubectl get po -n testing
+11. Apply vpa-auto.yaml.  The only difference with this file is it sets Update Mode to Auto.
 
-You should see your autoscaler now has a MAXPODS value of 8 and there should be 8 replicas of php-apache running.
+        kubectl apply -f vpa-auto.yaml
 
-10. Stop generating load by returning to the PowerShell window where the load generator is running and pressing Ctl-C.
+12. Let's force a restart on our deployment
 
-11. Check again how many pods are running.
+        kubectl rollout restart deploy/php-apache -n testing
 
-        kubectl get po -n testing
+13. Check our pod resource requests and limits again
 
-You will probably still see 5 pods running.  While HPA will scale a deployment up very quickly, it scales down more slowly.  By default it takes 5 minutes to scale down a deployment.  If you'd like to see your deployment scale back down to 1 replica, wait 5 minutes and run "kubectl get po -n testing" again.
+        ./Get-Pod-Resources.ps1 -n testing
 
-12. When done, roll back your changes.
+This time you should see CPU and Memory requests have been updated for our php-apache pod.  Our pod has been successfully scaled!
 
-        kubectl delete -f hpa.yaml
+14. When you're done, let's return our cluster to its original state
+
+        kubectl delete -f vpa-auto.yaml
         kubectl delete -f php-apache.yaml
+        helm uninstall vertical-pod-autoscaler -n kube-system
 
-If you deployed the metrics server as part of this scenario you can remove it by typing
-
-    kubectl delete -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.7.2/components.yaml
-
+This concludes the scenario.
+	 
