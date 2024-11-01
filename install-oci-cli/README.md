@@ -36,7 +36,7 @@ This will start the installation script.  In most cases you can accept the defau
 
         oci setup config
 
-Enter your User OCID and Tenant OCID when promted, as well as the home region for your account.  Select Yes when asked if you want to generate a new API Signing RSA key pair.  
+Enter your User OCID and Tenant OCID when prompted, as well as the home region for your account.  Select Yes when asked if you want to generate a new API Signing RSA key pair.  
 
 5. When the setup process completes it will create your config and write your public and private keys.  Near the end of the output you should see a line similar to this:
 
