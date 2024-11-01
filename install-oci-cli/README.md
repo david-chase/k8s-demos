@@ -40,7 +40,7 @@ Enter your User OCID and Tenant OCID when prompted, as well as the home region f
 
 5. When the setup process completes it will create your config and write your public and private keys.  Near the end of the output you should see a line similar to this:
 
-    Private key written to: C:\Users\<username>\.oci\oci_api_key.pem
+        Private key written to: C:\Users\<username>\.oci\oci_api_key.pem
 
 Note the *folder* where this file has been saved.  This is the folder containing your public key.
 
