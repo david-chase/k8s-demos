@@ -11,7 +11,7 @@ https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm
 ## Scenario
 
 ### Windows
-Download and install the latest CLI from Github:
+Download and install the latest CLI .MSI from Github:
 
     https://github.com/oracle/oci-cli/releases
 
