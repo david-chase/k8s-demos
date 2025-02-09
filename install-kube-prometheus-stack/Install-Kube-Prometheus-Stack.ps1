@@ -1,5 +1,5 @@
 Write-Host ""
-Write-Host ::: Install-Kube-Prometheus-Ptack v1 ::: -ForegroundColor Cyan
+Write-Host ::: Install-Kube-Prometheus-Stack v1 ::: -ForegroundColor Cyan
 Write-Host ""
 
 Write-Host Adding Helm repo... -ForegroundColor Cyan
@@ -13,14 +13,18 @@ helm repo update
 Write-Host `nInstalling Helm chart... -ForegroundColor Cyan
 Write-Host 'helm install prometheus prometheus-community/kube-prometheus-stack `
     -n monitoring `
-    --set alertmanager.persistentVolume.storageClass="default" `
-    --set server.persistentVolume.storageClass="default" `
-    --create-namespace ' -ForegroundColor Green
+    --create-namespace `
+    -f values.yaml' --ForegroundColor Green
+    # --set alertmanager.persistentVolume.storageClass="default" `
+    # --set server.persistentVolume.storageClass="default" `
 helm install prometheus prometheus-community/kube-prometheus-stack `
     -n monitoring `
-    --set alertmanager.persistentVolume.storageClass="default" `
-    --set server.persistentVolume.storageClass="default" `
-    --create-namespace 
+    --create-namespace `
+    -f values.yaml
+ #   --set alertmanager.persistentVolume.storageClass="default" `
+ #   --set server.persistentVolume.storageClass="default" `
+ #   --set alertmanager.persistentVolume.enabled=false `
+ #   --set server.persistentVolume.enabled=false
 
 Write-Host `nAre you installing this on a managed Kubernetes service? [Y/n] -ForegroundColor Cyan
 $sInput = Read-Host
