@@ -11,7 +11,7 @@ Note that there is roughly a $70USD monthly fee to run the control plane, so dep
 3. PowerShell Core
 
 For instructions on installing and configuring the AWS CLI see:
-https://github.com/david-chase/k8s-demos/tree/master/install-aws-clicd
+https://github.com/david-chase/k8s-demos/tree/master/install-aws-cli
 
 For instructions on installing eksctl see:
 https://github.com/david-chase/k8s-demos/tree/master/install-eksctl
