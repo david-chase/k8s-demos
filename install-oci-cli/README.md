@@ -11,7 +11,7 @@ https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm
 ## Scenario
 
 ### Windows
-Download and install the latest CLI from Github:
+Download and install the latest CLI .MSI from Github:
 
     https://github.com/oracle/oci-cli/releases
 
@@ -36,11 +36,11 @@ This will start the installation script.  In most cases you can accept the defau
 
         oci setup config
 
-Enter your User OCID and Tenant OCID when promted, as well as the home region for your account.  Select Yes when asked if you want to generate a new API Signing RSA key pair.  
+Enter your User OCID and Tenant OCID when prompted, as well as the home region for your account.  Select Yes when asked if you want to generate a new API Signing RSA key pair.  
 
 5. When the setup process completes it will create your config and write your public and private keys.  Near the end of the output you should see a line similar to this:
 
-    Private key written to: C:\Users\<username>\.oci\oci_api_key.pem
+        Private key written to: C:\Users\<username>\.oci\oci_api_key.pem
 
 Note the *folder* where this file has been saved.  This is the folder containing your public key.
 

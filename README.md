@@ -9,10 +9,11 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 ## What's new
 | Folder | Description
 |---|---|
-| [node-overprovisioning](https://github.com/david-chase/k8s-demos/tree/master/node-overprovisioning) | Prevent your production workloads from suffering latency when adding new nodes by provisioning a hot spare. |
-| [deploy-k8s-resources-using-terraform](https://github.com/david-chase/k8s-demos/tree/master/deploy-k8s-resources-using-terraform) | Deploy native Kubernetes resources using Terraform. |
-| [eksctl-create-cluster-karpenter-on-fargate](https://github.com/david-chase/k8s-demos/tree/master/eksctl-create-cluster-karpenter-on-fargate) | Build an EKS cluster where Karpenter runs on Fargate. |
+| [install-oci-cli](https://github.com/david-chase/k8s-demos/tree/master/install-oci-cli) | Install and configure the Oracle CLI tool.  This is required to create and manage a OKE cluster. |
 | [vertical-pod-autoscaler](https://github.com/david-chase/k8s-demos/tree/master/vertical-pod-autoscaler) | Scale workloads by allocating more resources to them using Vertical Pod Autoscaler. |
+| [eksctl-create-cluster-karpenter-on-fargate](https://github.com/david-chase/k8s-demos/tree/master/eksctl-create-cluster-karpenter-on-fargate) | Build an EKS cluster where Karpenter runs on Fargate. |
+| [deploy-k8s-resources-using-terraform](https://github.com/david-chase/k8s-demos/tree/master/deploy-k8s-resources-using-terraform) | Deploy native Kubernetes resources using Terraform. |
+| [node-overprovisioning](https://github.com/david-chase/k8s-demos/tree/master/node-overprovisioning) | Prevent your production workloads from suffering latency when adding new nodes by provisioning a hot spare. |
 
 ## List of scenarios by function
 
@@ -23,6 +24,7 @@ All scenarios in this repo require PowerShell Core, as this allows you to run th
 | [install-aws-cli](https://github.com/david-chase/k8s-demos/tree/master/install-aws-cli) | Install and configure the AWS CLI tool.  This is required for any scenarios specific to EKS. |
 | [install-azure-cli](https://github.com/david-chase/k8s-demos/tree/master/install-azure-cli) | Install and configure the Azure CLI tool.  This is required to create and manage an AKS cluster. |
 | [install-gcloud-cli](https://github.com/david-chase/k8s-demos/tree/master/install-gcloud-cli) | Install and configure the Google CLI tool.  This is required to create and manage a GKE cluster. |
+| [install-oci-cli](https://github.com/david-chase/k8s-demos/tree/master/install-oci-cli) | Install and configure the Oracle CLI tool.  This is required to create and manage a OKE cluster. |
 | [install-eksctl](https://github.com/david-chase/k8s-demos/tree/master/install-eksctl) | Install the EKSCTL utility.  This is used to create and manage an EKS cluster. |
 | [export-kubeconfig](https://github.com/david-chase/k8s-demos/tree/master/export-kubeconfig) | Recreate your kubeconfig file if it becomes corrupted or is pointing to the wrong cluster.  kubeconfig is used by kubectl to connect to your cluster. |
 

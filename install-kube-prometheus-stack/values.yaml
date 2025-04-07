@@ -1,0 +1,61 @@
+prometheus:
+  prometheusSpec:
+    resources:
+      requests:
+        cpu: "10m"
+        memory: "1Gi"
+#    storageSpec:
+#      volumeClaimTemplate:
+#        spec:
+#          accessModes: ["ReadWriteOnce"]
+#
+#          resources:
+#            requests:
+#              storage: 25Gi  # Adjust as needed
+
+alertmanager:
+  enabled: false
+#  alertmanagerSpec:
+#    storage:
+#      volumeClaimTemplate:
+#        spec:
+#          accessModes: ["ReadWriteOnce"]
+#          resources:
+#            requests:
+#              storage: 5Gi  # Adjust as needed
+
+grafana:
+#  persistence:
+  enabled: false
+#    storageClassName: "efs-sc"  # Set to your cluster's storage class
+#    accessModes: ["ReadWriteOnce"]
+#    size: 25Gi
+#  resources:
+#    requests:
+#      cpu: "20m"
+#      memory: "250Mi"
+
+prometheus:
+  prometheusSpec:
+    resources:
+      requests:
+        cpu: "10m"
+        memory: "1000Mi"
+
+prometheusOperator:
+  resources:
+    requests:
+      cpu: "10m"
+      memory: "30Mi"
+
+kube-state-metrics:
+  resources:
+    requests:
+      cpu: "10m"
+      memory: "20Mi"
+
+prometheus-node-exporter:
+  resources:
+    requests:
+      cpu: "10m"
+      memory: "6Mi"
