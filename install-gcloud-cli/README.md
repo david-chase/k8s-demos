@@ -30,3 +30,7 @@ From a bash shell run:
 
 ### Configure gcloud
 After "gcloud init" launches, follow the instructions to enter your credentials and defaults.
+
+### Install gcloud auth plug-in (required for kubectl)
+
+    gcloud components install gke-gcloud-auth-plugin
